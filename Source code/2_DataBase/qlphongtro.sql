@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 13, 2018 at 06:18 AM
+-- Generation Time: Oct 19, 2018 at 09:39 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -21,28 +21,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `qlphongtro` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `qlphongtro`;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `area`
---
-
-CREATE TABLE IF NOT EXISTS `area` (
-  `AREA_ID` int(11) NOT NULL,
-  `AREA_USERNAME` varchar(20) NOT NULL,
-  `AREA_NAME` varchar(50) CHARACTER SET utf8 NOT NULL,
-  `AREA_ADDRESS` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `AREA_LOGITUDE` varchar(255) NOT NULL,
-  `AREA_LATITUDE` varchar(255) NOT NULL,
-  `AREA_PROVIDER_ID` int(11) NOT NULL,
-  `AREA_DISTRICT_ID` int(11) NOT NULL,
-  `AREA_WARD_ID` int(11) NOT NULL,
-  PRIMARY KEY (`AREA_ID`),
-  KEY `FK_area_provider` (`AREA_PROVIDER_ID`),
-  KEY `FK_area_district` (`AREA_DISTRICT_ID`),
-  KEY `FK_area_ward` (`AREA_WARD_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -74,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `district` (
   `DISTRICT_LOCATION` varchar(200) NOT NULL,
   `DISTRICT_PROVINCE_ID` int(11) NOT NULL,
   PRIMARY KEY (`DISTRICT_ID`),
-  KEY `FK_district_provider` (`DISTRICT_PROVINCE_ID`)
+  KEY `FK_district_province` (`DISTRICT_PROVINCE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -756,21 +734,21 @@ CREATE TABLE IF NOT EXISTS `image` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `provider`
+-- Table structure for table `province`
 --
 
-CREATE TABLE IF NOT EXISTS `provider` (
-  `PROVIDER_ID` int(11) NOT NULL,
-  `PROVIDER_NAME` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `PROVIDER_TYPE` varchar(20) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`PROVIDER_ID`)
+CREATE TABLE IF NOT EXISTS `province` (
+  `PROVINCE_ID` int(11) NOT NULL,
+  `PROVINCE_NAME` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `PROVINCE_TYPE` varchar(20) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`PROVINCE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `provider`
+-- Dumping data for table `province`
 --
 
-INSERT INTO `provider` (`PROVIDER_ID`, `PROVIDER_NAME`, `PROVIDER_TYPE`) VALUES
+INSERT INTO `province` (`PROVINCE_ID`, `PROVINCE_NAME`, `PROVINCE_TYPE`) VALUES
 (1, 'Hà Nội', 'Thành Phố'),
 (2, 'Hà Giang', 'Tỉnh'),
 (4, 'Cao Bằng', 'Tỉnh'),
@@ -860,13 +838,13 @@ CREATE TABLE IF NOT EXISTS `room` (
   `ROOM_DISCRIBE` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `ROOM_ACREAGE` float DEFAULT NULL,
   `ROOM_STATUS_ID` int(11) NOT NULL,
-  `ROOM_AREA_ID` int(11) NOT NULL,
+  `ROOM_ZONE_ID` int(11) NOT NULL,
   `ROOM_TYPE_ID` int(11) NOT NULL,
   `ROOM_PRIORITIZE` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`ROOM_ID`),
   KEY `FK_room_type` (`ROOM_TYPE_ID`),
   KEY `FK_room_status` (`ROOM_STATUS_ID`),
-  KEY `FK_room_area` (`ROOM_AREA_ID`)
+  KEY `FK_room_zone` (`ROOM_ZONE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -11255,17 +11233,32 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (32245, 'Tân Ân', 'Xã', '8 38 45N, 105 03 22E', 973),
 (32248, 'Đất Mũi', 'Xã', '8 36 41N, 104 47 12E', 973);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `zone`
+--
+
+CREATE TABLE IF NOT EXISTS `zone` (
+  `ZONE_ID` int(11) NOT NULL,
+  `ZONE_USERNAME` varchar(20) NOT NULL,
+  `ZONE_NAME` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `ZONE_ADDRESS` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `ZONE_LOGITUDE` varchar(255) NOT NULL,
+  `ZONE_LATITUDE` varchar(255) NOT NULL,
+  `ZONE_PROVINCE_ID` int(11) NOT NULL,
+  `ZONE_DISTRICT_ID` int(11) NOT NULL,
+  `ZONE_WARD_ID` int(11) NOT NULL,
+  PRIMARY KEY (`ZONE_ID`),
+  KEY `FK_zone_ward` (`ZONE_WARD_ID`),
+  KEY `FK_zone_district` (`ZONE_DISTRICT_ID`),
+  KEY `FK_zone_user` (`ZONE_USERNAME`),
+  KEY `FK_zone_province` (`ZONE_PROVINCE_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `area`
---
-ALTER TABLE `area`
-  ADD CONSTRAINT `FK_area_district` FOREIGN KEY (`AREA_DISTRICT_ID`) REFERENCES `district` (`DISTRICT_ID`),
-  ADD CONSTRAINT `FK_area_provider` FOREIGN KEY (`AREA_PROVIDER_ID`) REFERENCES `provider` (`PROVIDER_ID`),
-  ADD CONSTRAINT `FK_area_ward` FOREIGN KEY (`AREA_WARD_ID`) REFERENCES `ward` (`WARD_ID`);
 
 --
 -- Constraints for table `contract`
@@ -11278,7 +11271,7 @@ ALTER TABLE `contract`
 -- Constraints for table `district`
 --
 ALTER TABLE `district`
-  ADD CONSTRAINT `FK_district_provider` FOREIGN KEY (`DISTRICT_PROVINCE_ID`) REFERENCES `provider` (`PROVIDER_ID`);
+  ADD CONSTRAINT `FK_district_province` FOREIGN KEY (`DISTRICT_PROVINCE_ID`) REFERENCES `province` (`PROVINCE_ID`);
 
 --
 -- Constraints for table `image`
@@ -11290,7 +11283,7 @@ ALTER TABLE `image`
 -- Constraints for table `room`
 --
 ALTER TABLE `room`
-  ADD CONSTRAINT `FK_room_area` FOREIGN KEY (`ROOM_AREA_ID`) REFERENCES `area` (`AREA_ID`),
+  ADD CONSTRAINT `FK_room_zone` FOREIGN KEY (`ROOM_ZONE_ID`) REFERENCES `zone` (`ZONE_ID`),
   ADD CONSTRAINT `FK_room_status` FOREIGN KEY (`ROOM_STATUS_ID`) REFERENCES `status` (`STATUS_ID`),
   ADD CONSTRAINT `FK_room_type` FOREIGN KEY (`ROOM_TYPE_ID`) REFERENCES `type` (`TYPE_ID`);
 
@@ -11305,6 +11298,15 @@ ALTER TABLE `users`
 --
 ALTER TABLE `ward`
   ADD CONSTRAINT `FK_ward_district` FOREIGN KEY (`WARD_DISTRICT_ID`) REFERENCES `district` (`DISTRICT_ID`);
+
+--
+-- Constraints for table `zone`
+--
+ALTER TABLE `zone`
+  ADD CONSTRAINT `FK_zone_province` FOREIGN KEY (`ZONE_PROVINCE_ID`) REFERENCES `province` (`PROVINCE_ID`),
+  ADD CONSTRAINT `FK_zone_district` FOREIGN KEY (`ZONE_DISTRICT_ID`) REFERENCES `district` (`DISTRICT_ID`),
+  ADD CONSTRAINT `FK_zone_user` FOREIGN KEY (`ZONE_USERNAME`) REFERENCES `users` (`USERS_USERNAME`),
+  ADD CONSTRAINT `FK_zone_ward` FOREIGN KEY (`ZONE_WARD_ID`) REFERENCES `ward` (`WARD_ID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
