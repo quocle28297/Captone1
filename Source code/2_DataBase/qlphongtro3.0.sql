@@ -1,26 +1,26 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
--- http://www.phpmyadmin.net
+-- version 4.8.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2018 at 09:39 AM
--- Server version: 5.5.32
--- PHP Version: 5.4.19
+-- Generation Time: Oct 27, 2018 at 06:13 AM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `qlphongtro`
 --
-CREATE DATABASE IF NOT EXISTS `qlphongtro` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `qlphongtro`;
 
 -- --------------------------------------------------------
 
@@ -28,15 +28,13 @@ USE `qlphongtro`;
 -- Table structure for table `contract`
 --
 
-CREATE TABLE IF NOT EXISTS `contract` (
+CREATE TABLE `contract` (
   `CONTRACT_ROOM_ID` int(11) NOT NULL,
-  `CONTRACT_USERS_USERNAME` varchar(20) NOT NULL,
+  `CONTRACT_USERS_ID` int(11) NOT NULL,
   `CONTRACT_STARTDATE` date NOT NULL,
   `CONTRACT_ENDDATE` date NOT NULL,
   `CONTRACT_PRICE` float NOT NULL,
-  `CONTRACT_STATUS` int(11) NOT NULL,
-  PRIMARY KEY (`CONTRACT_ROOM_ID`,`CONTRACT_USERS_USERNAME`),
-  KEY `FK_contract_user` (`CONTRACT_USERS_USERNAME`)
+  `CONTRACT_STATUS` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -45,14 +43,12 @@ CREATE TABLE IF NOT EXISTS `contract` (
 -- Table structure for table `district`
 --
 
-CREATE TABLE IF NOT EXISTS `district` (
+CREATE TABLE `district` (
   `DISTRICT_ID` int(11) NOT NULL,
   `DISTRICT_NAME` varchar(100) CHARACTER SET utf8 NOT NULL,
   `DISTRICT_TYPE` varchar(50) CHARACTER SET utf8 NOT NULL,
   `DISTRICT_LOCATION` varchar(200) NOT NULL,
-  `DISTRICT_PROVINCE_ID` int(11) NOT NULL,
-  PRIMARY KEY (`DISTRICT_ID`),
-  KEY `FK_district_province` (`DISTRICT_PROVINCE_ID`)
+  `DISTRICT_PROVINCE_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -501,14 +497,14 @@ INSERT INTO `district` (`DISTRICT_ID`, `DISTRICT_NAME`, `DISTRICT_TYPE`, `DISTRI
 (635, 'Ia Pa', 'Huyện', '13 31 37N, 108 30 34E', 64),
 (637, 'Krông Pa', 'Huyện', '13 14 13N, 108 39 12E', 64),
 (643, 'Buôn Ma Thuột', 'Thành Phố', '12 39 43N, 108 10 40E', 66),
-(645, 'Ea H''leo', 'Huyện', '13 13 52N, 108 12 30E', 66),
+(645, 'Ea H\'leo', 'Huyện', '13 13 52N, 108 12 30E', 66),
 (646, 'Ea Súp', 'Huyện', '13 10 59N, 107 46 49E', 66),
 (647, 'Buôn Đôn', 'Huyện', '12 52 45N, 107 45 20E', 66),
-(648, 'Cư M''gar', 'Huyện', '12 53 47N, 108 04 16E', 66),
+(648, 'Cư M\'gar', 'Huyện', '12 53 47N, 108 04 16E', 66),
 (649, 'Krông Búk', 'Huyện', '12 56 27N, 108 13 54E', 66),
 (650, 'Krông Năng', 'Huyện', '12 59 41N, 108 23 42E', 66),
 (651, 'Ea Kar', 'Huyện', '12 48 17N, 108 32 42E', 66),
-(652, 'M''đrắk', 'Huyện', '12 42 14N, 108 47 09E', 66),
+(652, 'M\'đrắk', 'Huyện', '12 42 14N, 108 47 09E', 66),
 (653, 'Krông Bông', 'Huyện', '12 27 08N, 108 27 01E', 66),
 (654, 'Krông Pắc', 'Huyện', '12 41 20N, 108 18 42E', 66),
 (655, 'Krông A Na', 'Huyện', '12 31 51N, 108 05 03E', 66),
@@ -518,7 +514,7 @@ INSERT INTO `district` (`DISTRICT_ID`, `DISTRICT_NAME`, `DISTRICT_TYPE`, `DISTRI
 (663, 'Đắk Mil', 'Huyện', '12 31 08N, 107 42 24E', 67),
 (664, 'Krông Nô', 'Huyện', '12 22 16N, 107 53 49E', 67),
 (665, 'Đắk Song', 'Huyện', '12 14 04N, 107 36 30E', 67),
-(666, 'Đắk R''lấp', 'Huyện', '12 02 30N, 107 25 59E', 67),
+(666, 'Đắk R\'lấp', 'Huyện', '12 02 30N, 107 25 59E', 67),
 (672, 'Đà Lạt', 'Thành Phố', '11 54 33N, 108 27 08E', 68),
 (673, 'Bảo Lộc', 'Thị Xã', '11 32 48N, 107 47 37E', 68),
 (674, 'Đam Rông', 'Huyện', '12 02 35N, 108 10 26E', 68),
@@ -723,12 +719,10 @@ INSERT INTO `district` (`DISTRICT_ID`, `DISTRICT_NAME`, `DISTRICT_TYPE`, `DISTRI
 -- Table structure for table `image`
 --
 
-CREATE TABLE IF NOT EXISTS `image` (
+CREATE TABLE `image` (
   `IMAGE_ID` int(11) NOT NULL,
   `IMAGE_NAME` varchar(255) NOT NULL,
-  `IMAGE_ROOM_ID` int(11) NOT NULL,
-  PRIMARY KEY (`IMAGE_ID`),
-  KEY `FK_image_room` (`IMAGE_ROOM_ID`)
+  `IMAGE_ROOM_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -737,11 +731,10 @@ CREATE TABLE IF NOT EXISTS `image` (
 -- Table structure for table `province`
 --
 
-CREATE TABLE IF NOT EXISTS `province` (
+CREATE TABLE `province` (
   `PROVINCE_ID` int(11) NOT NULL,
   `PROVINCE_NAME` varchar(100) CHARACTER SET utf8 NOT NULL,
-  `PROVINCE_TYPE` varchar(20) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`PROVINCE_ID`)
+  `PROVINCE_TYPE` varchar(20) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -819,11 +812,18 @@ INSERT INTO `province` (`PROVINCE_ID`, `PROVINCE_NAME`, `PROVINCE_TYPE`) VALUES
 -- Table structure for table `role`
 --
 
-CREATE TABLE IF NOT EXISTS `role` (
+CREATE TABLE `role` (
   `ROLE_ID` int(11) NOT NULL,
-  `ROLE_NAME` varchar(30) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`ROLE_ID`)
+  `ROLE_NAME` varchar(30) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`ROLE_ID`, `ROLE_NAME`) VALUES
+(1, 'Admin'),
+(2, 'User');
 
 -- --------------------------------------------------------
 
@@ -831,7 +831,7 @@ CREATE TABLE IF NOT EXISTS `role` (
 -- Table structure for table `room`
 --
 
-CREATE TABLE IF NOT EXISTS `room` (
+CREATE TABLE `room` (
   `ROOM_ID` int(11) NOT NULL,
   `ROOM_NAME` varchar(50) CHARACTER SET utf8 NOT NULL,
   `ROOM_PRICE` float NOT NULL,
@@ -840,12 +840,50 @@ CREATE TABLE IF NOT EXISTS `room` (
   `ROOM_STATUS_ID` int(11) NOT NULL,
   `ROOM_ZONE_ID` int(11) NOT NULL,
   `ROOM_TYPE_ID` int(11) NOT NULL,
-  `ROOM_PRIORITIZE` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`ROOM_ID`),
-  KEY `FK_room_type` (`ROOM_TYPE_ID`),
-  KEY `FK_room_status` (`ROOM_STATUS_ID`),
-  KEY `FK_room_zone` (`ROOM_ZONE_ID`)
+  `ROOM_PRIORITIZE` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `room`
+--
+
+INSERT INTO `room` (`ROOM_ID`, `ROOM_NAME`, `ROOM_PRICE`, `ROOM_DISCRIBE`, `ROOM_ACREAGE`, `ROOM_STATUS_ID`, `ROOM_ZONE_ID`, `ROOM_TYPE_ID`, `ROOM_PRIORITIZE`) VALUES
+(1, 'Phòng 1', 1500000, NULL, NULL, 1, 1, 1, NULL),
+(2, 'Phòng 2', 1500000, NULL, NULL, 1, 1, 1, NULL),
+(3, 'Phòng 3', 1500000, NULL, NULL, 2, 1, 1, NULL),
+(4, 'Phòng 4', 1500000, NULL, NULL, 1, 1, 1, NULL),
+(5, 'Phòng 5', 2500000, 'Phòng rông có thể mở văn phòng', NULL, 1, 1, 2, NULL),
+(6, 'Nhà nguyên căn', 4500000, 'Nhà gồm: 1 phòng ngủ, 1 phòng khách, 1 wc, bếp và sân để xe thoải mái', 60, 2, 2, 3, NULL),
+(7, 'Phòng 1 - Tầng 1', 1700000, NULL, NULL, 1, 3, 1, NULL),
+(8, 'Phòng 2 - Tầng 1', 1700000, NULL, NULL, 1, 3, 1, NULL),
+(9, 'Phòng 1 - Tầng 2', 1500000, NULL, NULL, 1, 3, 1, NULL),
+(10, 'Phòng 2 - Tầng 2', 1500000, NULL, NULL, 1, 3, 1, NULL),
+(11, 'Phòng 3 - Tầng 2', 1700000, NULL, NULL, 1, 3, 1, NULL),
+(12, 'Phòng 4 - Tầng 2', 1500000, NULL, NULL, 2, 3, 1, NULL),
+(13, 'Phòng 1', 850000, NULL, NULL, 1, 4, 1, NULL),
+(14, 'Phòng 2', 850000, NULL, NULL, 1, 4, 1, NULL),
+(15, 'Phòng 3', 850000, NULL, NULL, 1, 4, 1, NULL),
+(16, 'Phòng 4', 850000, NULL, NULL, 2, 4, 1, NULL),
+(17, 'Phòng 5', 850000, NULL, NULL, 1, 4, 1, NULL),
+(18, 'Phòng 6', 850000, NULL, NULL, 2, 4, 1, NULL),
+(19, 'Phòng 7', 850000, NULL, NULL, 1, 4, 1, NULL),
+(20, 'Phòng 8', 850000, NULL, NULL, 1, 4, 1, NULL),
+(21, 'Phòng 9', 850000, NULL, NULL, 1, 4, 1, NULL),
+(22, 'Phòng 10', 850000, NULL, NULL, 1, 4, 1, NULL),
+(23, 'Phòng 11', 850000, NULL, NULL, 2, 4, 1, NULL),
+(24, 'Phòng 12', 850000, NULL, NULL, 2, 4, 1, NULL),
+(25, 'Phòng số 1', 1000000, NULL, NULL, 1, 4, 1, NULL),
+(26, 'Phòng số 2', 1000000, NULL, NULL, 1, 4, 1, NULL),
+(27, 'Phòng số 3', 1000000, NULL, NULL, 1, 4, 1, NULL),
+(28, 'Phòng số 4', 1000000, NULL, NULL, 1, 4, 1, NULL),
+(29, 'Phòng 1', 900000, NULL, NULL, 1, 5, 1, NULL),
+(30, 'Phòng 2', 900000, NULL, NULL, 1, 5, 1, NULL),
+(31, 'Phòng 3', 900000, NULL, NULL, 1, 5, 1, NULL),
+(32, 'Phòng 3', 900000, NULL, NULL, 1, 5, 1, NULL),
+(33, 'Phòng 4', 900000, NULL, NULL, 1, 5, 1, NULL),
+(34, 'Phòng 5', 900000, NULL, NULL, 1, 5, 1, NULL),
+(35, 'Phòng đầu', 2000000, NULL, NULL, 2, 6, 2, NULL),
+(36, 'Phòng sau', 1000000, NULL, NULL, 1, 6, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -853,11 +891,19 @@ CREATE TABLE IF NOT EXISTS `room` (
 -- Table structure for table `status`
 --
 
-CREATE TABLE IF NOT EXISTS `status` (
+CREATE TABLE `status` (
   `STATUS_ID` int(11) NOT NULL,
-  `STATUS_NAME` varchar(20) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`STATUS_ID`)
+  `STATUS_NAME` varchar(20) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`STATUS_ID`, `STATUS_NAME`) VALUES
+(1, 'Free'),
+(2, 'None free'),
+(3, 'Stop working');
 
 -- --------------------------------------------------------
 
@@ -865,11 +911,19 @@ CREATE TABLE IF NOT EXISTS `status` (
 -- Table structure for table `type`
 --
 
-CREATE TABLE IF NOT EXISTS `type` (
+CREATE TABLE `type` (
   `TYPE_ID` int(11) NOT NULL,
-  `TYPE_NAME` varchar(50) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`TYPE_ID`)
+  `TYPE_NAME` varchar(50) CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `type`
+--
+
+INSERT INTO `type` (`TYPE_ID`, `TYPE_NAME`) VALUES
+(1, 'Single room'),
+(2, 'Double room'),
+(3, 'House');
 
 -- --------------------------------------------------------
 
@@ -877,15 +931,29 @@ CREATE TABLE IF NOT EXISTS `type` (
 -- Table structure for table `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
+  `USERS_ID` int(11) NOT NULL,
+  `USERS_ID_FACEBOOK` int(20) NOT NULL,
   `USERS_USERNAME` varchar(20) NOT NULL,
   `USERS_PASSWORD` varchar(20) NOT NULL,
   `USERS_NAME` varchar(50) CHARACTER SET utf8 NOT NULL,
   `USERS_PHONE` varchar(11) NOT NULL,
-  `USERS_ROLE_ID` int(11) NOT NULL,
-  PRIMARY KEY (`USERS_USERNAME`),
-  KEY `NewIndex1` (`USERS_ROLE_ID`)
+  `USERS_ROLE_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`USERS_ID`, `USERS_ID_FACEBOOK`, `USERS_USERNAME`, `USERS_PASSWORD`, `USERS_NAME`, `USERS_PHONE`, `USERS_ROLE_ID`) VALUES
+(1, 0, 'anhho', '1234abcd', 'Ho Trung Anh', '', 1),
+(2, 0, 'lanhuynh', '1234abcd', 'Huynh Vu Ha Lan', '0375373265', 1),
+(3, 0, 'nganpham', '1234abcd', 'Phan Thanh Tieu Ngan', '01689172083', 2),
+(4, 0, 'nhathuynh', '1234abcd', 'Huynh Quoc Nhat', '', 1),
+(5, 0, 'nhiyen', '1234abcd', 'Nguyen Thi Yen Nhi', '01645555297', 2),
+(6, 0, 'quocle', '1234abcd', 'Le Hoang Quoc', '', 1),
+(7, 0, 'thuydiem', '1234abcd', 'Nguyen Thuy Diem', '0935718139', 2),
+(8, 0, 'vanhuynh', '1234abcd', 'Huynh Thi Thanh Van', '', 1);
 
 -- --------------------------------------------------------
 
@@ -893,14 +961,12 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Table structure for table `ward`
 --
 
-CREATE TABLE IF NOT EXISTS `ward` (
+CREATE TABLE `ward` (
   `WARD_ID` int(11) NOT NULL,
   `WARD_NAME` varchar(100) CHARACTER SET utf8 NOT NULL,
   `WARD_TYPE` varchar(20) CHARACTER SET utf8 NOT NULL,
   `WARD_LOCATION` varchar(255) NOT NULL,
-  `WARD_DISTRICT_ID` int(11) NOT NULL,
-  PRIMARY KEY (`WARD_ID`),
-  KEY `FK_ward_district` (`WARD_DISTRICT_ID`)
+  `WARD_DISTRICT_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1767,8 +1833,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (2599, 'Chi Thiết', 'Xã', '21 35 48N, 105 18 23E', 76),
 (2602, 'Đông Lợi', 'Xã', '21 35 29N, 105 20 14E', 76),
 (2605, 'Thiện Kế', 'Xã', '21 35 19N, 105 29 09E', 76),
-(2608, 'Hồng Lạc', 'Xã', '21 34 44N, 105 16 36E', 76);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(2608, 'Hồng Lạc', 'Xã', '21 34 44N, 105 16 36E', 76),
 (2611, 'Phú Lương', 'Xã', '21 33 09N, 105 22 52E', 76),
 (2614, 'Ninh Lai', 'Xã', '21 33 18N, 105 30 30E', 76),
 (2617, 'Đại Phú', 'Xã', '21 32 16N, 105 25 26E', 76),
@@ -1833,7 +1898,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (2794, 'Tả Thàng', 'Xã', '22 34 15N, 104 10 56E', 83),
 (2797, 'Bản Sen', 'Xã', '22 34 12N, 104 06 06E', 83),
 (2800, 'Nàn Sán', 'Xã', '22 42 49N, 104 15 59E', 84),
-(2803, 'Thào Chư Phìn', 'Xã', '22 41 59N, 104 11 40E', 84),
+(2803, 'Thào Chư Phìn', 'Xã', '22 41 59N, 104 11 40E', 84);
+INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
 (2806, 'Bản Mế', 'Xã', '22 41 49N, 104 13 31E', 84),
 (2809, 'Si Ma Cai', 'Xã', '22 42 16N, 104 17 42E', 84),
 (2812, 'Sán Chải', 'Xã', '22 41 48N, 104 18 21E', 84),
@@ -2620,8 +2686,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (5275, 'Mỹ Thành', 'Xã', '20 33 56N, 105 31 26E', 157),
 (5278, 'Tuân Đạo', 'Xã', '20 34 13N, 105 26 19E', 157),
 (5281, 'Văn Nghĩa', 'Xã', '20 32 39N, 105 28 41E', 157),
-(5284, 'Văn Sơn', 'Xã', '20 32 19N, 105 23 26E', 157);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(5284, 'Văn Sơn', 'Xã', '20 32 19N, 105 23 26E', 157),
 (5287, 'Tân Lập', 'Xã', '20 32 48N, 105 26 30E', 157),
 (5290, 'Nhân Nghĩa', 'Xã', '20 31 22N, 105 25 52E', 157),
 (5293, 'Thượng Cốc', 'Xã', '20 30 25N, 105 22 44E', 157),
@@ -2744,7 +2809,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (5647, 'Vô Tranh', 'Xã', '21 41 05N, 105 45 47E', 168),
 (5650, 'Cổ Lũng', 'Xã', '21 38 57N, 105 45 08E', 168),
 (5653, 'Sơn Cẩm', 'Xã', '21 38 30N, 105 47 05E', 168),
-(5656, 'Sông Cầu', 'Thị Trấn', '21 40 42N, 105 51 57E', 169),
+(5656, 'Sông Cầu', 'Thị Trấn', '21 40 42N, 105 51 57E', 169);
+INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
 (5659, 'Chùa Hang', 'Thị Trấn', '21 37 45N, 105 49 53E', 169),
 (5662, 'Trại Cau', 'Thị Trấn', '21 35 38N, 105 56 58E', 169),
 (5665, 'Văn Lăng', 'Xã', '21 47 46N, 105 49 56E', 169),
@@ -3467,8 +3533,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (7840, 'Đức Thắng', 'Xã', '21 21 28N, 105 58 02E', 223),
 (7843, 'Quang Minh', 'Xã', '21 21 05N, 105 54 36E', 223),
 (7846, 'Lương Phong', 'Xã', '21 20 38N, 106 00 32E', 223),
-(7849, 'Hùng Sơn', 'Xã', '21 20 53N, 105 56 13E', 223);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(7849, 'Hùng Sơn', 'Xã', '21 20 53N, 105 56 13E', 223),
 (7852, 'Đại Thành', 'Xã', '21 20 26N, 105 54 25E', 223),
 (7855, 'Thường Thắng', 'Xã', '21 20 04N, 105 57 10E', 223),
 (7858, 'Hợp Thịnh', 'Xã', '21 19 30N, 105 54 06E', 223),
@@ -3654,7 +3719,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (8404, 'Tạ Xá', 'Xã', '21 22 36N, 105 07 03E', 235),
 (8407, 'Phú Lạc', 'Xã', '21 22 17N, 105 08 33E', 235),
 (8410, 'Tình Cương', 'Xã', '21 22 30N, 105 09 46E', 235),
-(8413, 'Chương Xá', 'Xã', '21 21 33N, 105 07 30E', 235),
+(8413, 'Chương Xá', 'Xã', '21 21 33N, 105 07 30E', 235);
+INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
 (8416, 'Hiền Đa', 'Xã', '21 21 29N, 105 09 55E', 235),
 (8419, 'Văn Khúc', 'Xã', '21 20 28N, 105 08 01E', 235),
 (8422, 'Yên Dưỡng', 'Xã', '21 19 26N, 105 09 02E', 235),
@@ -4313,8 +4379,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (10507, 'Cẩm Thượng', 'Phường', '20 57 02N, 106 18 50E', 288),
 (10510, 'Bình Hàn', 'Phường', '20 56 58N, 106 19 31E', 288),
 (10513, 'Ngọc Châu', 'Phường', '20 56 18N, 106 20 36E', 288),
-(10516, 'Quang Trung', 'Phường', '20 56 43N, 106 20 01E', 288);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(10516, 'Quang Trung', 'Phường', '20 56 43N, 106 20 01E', 288),
 (10519, 'Nguyễn Trãi', 'Phường', '20 56 35N, 106 19 31E', 288),
 (10522, 'Phạm Ngũ Lão', 'Phường', '20 56 12N, 106 19 05E', 288),
 (10525, 'Trần Hưng Đạo', 'Phường', '20 56 10N, 106 20 24E', 288),
@@ -4554,7 +4619,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (11311, 'Minh Khai', 'Phường', '20 51 55N, 106 40 50E', 303),
 (11314, 'Trại Chuối', 'Phường', '20 51 32N, 106 39 39E', 303),
 (11317, 'Quang Trung', 'Phường', '20 51 34N, 106 40 40E', 303),
-(11320, 'Hoàng Văn Thụ', 'Phường', '20 51 34N, 106 40 58E', 303),
+(11320, 'Hoàng Văn Thụ', 'Phường', '20 51 34N, 106 40 58E', 303);
+INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
 (11323, 'Phan Bội Châu', 'Phường', '20 51 27N, 106 40 29E', 303),
 (11326, 'Phạm Hồng Thái', 'Phường', '20 51 24N, 106 40 12E', 303),
 (11329, 'Máy Chai', 'Phường', '20 52 17N, 106 12 18E', 304),
@@ -5144,8 +5210,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (13123, 'Đình Phùng', 'Xã', '20 25 13N, 106 26 08E', 343),
 (13126, 'Vũ Ninh', 'Xã', '20 24 56N, 106 22 17E', 343),
 (13129, 'Vũ An', 'Xã', '20 25 20N, 106 23 20E', 343),
-(13132, 'Quang Lịch', 'Xã', '20 25 04N, 106 24 24E', 343);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(13132, 'Quang Lịch', 'Xã', '20 25 04N, 106 24 24E', 343),
 (13135, 'Hòa Bình', 'Xã', '20 24 31N, 106 24 50E', 343),
 (13138, 'Bình Minh', 'Xã', '20 23 58N, 106 26 21E', 343),
 (13141, 'Vũ Quí', 'Xã', '20 24 11N, 106 22 57E', 343),
@@ -5443,7 +5508,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (14026, 'Cổ Lễ', 'Thị Trấn', '20 18 56N, 106 16 26E', 363),
 (14029, 'Phương Định', 'Xã', '20 18 32N, 106 18 20E', 363),
 (14032, 'Trực Chính', 'Xã', '20 19 58N, 106 17 49E', 363),
-(14035, 'Trung Đông', 'Xã', '20 18 06N, 106 16 06E', 363),
+(14035, 'Trung Đông', 'Xã', '20 18 06N, 106 16 06E', 363);
+INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
 (14038, 'Liêm Hải', 'Xã', '20 17 22N, 106 18 05E', 363),
 (14041, 'Trực Tuấn', 'Xã', '20 16 41N, 106 16 25E', 363),
 (14044, 'Việt Hùng', 'Xã', '20 15 46N, 106 18 16E', 363),
@@ -5979,8 +6045,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (15664, 'Triệu Sơn', 'Thị Trấn', '19 49 19N, 105 36 08E', 397),
 (15667, 'Thọ Sơn', 'Xã', '19 50 42N, 105 28 44E', 397),
 (15670, 'Thọ Bình', 'Xã', '19 49 03N, 105 29 11E', 397),
-(15673, 'Thọ Tiến', 'Xã', '19 50 16N, 105 30 33E', 397);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(15673, 'Thọ Tiến', 'Xã', '19 50 16N, 105 30 33E', 397),
 (15676, 'Hợp Lý', 'Xã', '19 49 07N, 105 31 24E', 397),
 (15682, 'Hợp Thành', 'Xã', '19 48 08N, 105 33 13E', 397),
 (15685, 'Triệu Thành', 'Xã', '19 46 32N, 105 31 43E', 397),
@@ -6332,7 +6397,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (16726, 'Nghi Hoà', 'Phường', '18 46 03N, 105 44 10E', 413),
 (16729, 'Nghi Hải', 'Phường', '18 45 35N, 105 44 46E', 413),
 (16732, 'Nghi Hương', 'Xã', '18 47 22N, 105 43 27E', 413),
-(16735, 'Nghi Thu', 'Xã', '18 48 19N, 105 42 43E', 413),
+(16735, 'Nghi Thu', 'Xã', '18 48 19N, 105 42 43E', 413);
+INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
 (16738, 'Kim Sơn', 'Thị Trấn', '19 36 42N, 104 55 03E', 415),
 (16741, 'Thông Thụ', 'Xã', '19 52 06N, 104 56 17E', 415),
 (16744, 'Đồng Văn', 'Xã', '19 50 12N, 105 04 28E', 415),
@@ -6814,8 +6880,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (18289, 'Đức Thanh', 'Xã', '18 29 52N, 105 39 24E', 440),
 (18292, 'Đức Dũng', 'Xã', '18 27 35N, 105 38 00E', 440),
 (18295, 'Đức Lập', 'Xã', '18 28 39N, 105 35 56E', 440),
-(18298, 'Đức An', 'Xã', '18 27 52N, 105 36 55E', 440);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(18298, 'Đức An', 'Xã', '18 27 52N, 105 36 55E', 440),
 (18301, 'Đức Lạc', 'Xã', '18 28 49N, 105 33 48E', 440),
 (18304, 'Đức Đồng', 'Xã', '18 27 26N, 105 34 14E', 440),
 (18307, 'Đức Lạng', 'Xã', '18 25 47N, 105 34 01E', 440),
@@ -7225,7 +7290,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (19573, 'Hải Phúc', 'Xã', '16 35 28N, 107 03 54E', 467),
 (19576, 'Ba Nang', 'Xã', '16 33 51N, 106 51 58E', 467),
 (19579, 'Tà Long', 'Xã', '16 32 17N, 106 58 04E', 467),
-(19582, 'Húc Nghì', 'Xã', '16 29 07N, 107 02 34E', 467),
+(19582, 'Húc Nghì', 'Xã', '16 29 07N, 107 02 34E', 467);
+INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
 (19585, 'A Vao', 'Xã', '16 24 46N, 106 55 05E', 467),
 (19588, 'Tà Rụt', 'Xã', '16 25 30N, 107 00 13E', 467),
 (19591, 'A Bung', 'Xã', '16 21 55N, 107 00 57E', 467),
@@ -7516,9 +7582,9 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (20446, 'A Tiêng', 'Xã', '15 53 57N, 107 28 53E', 504),
 (20449, 'Lăng', 'Xã', '15 49 12N, 107 27 45E', 504),
 (20452, 'A Xan', 'Xã', '15 49 20N, 107 18 43E', 504),
-(20455, 'Tr''hy', 'Xã', '15 48 37N, 107 21 50E', 504),
+(20455, 'Tr\'hy', 'Xã', '15 48 37N, 107 21 50E', 504),
 (20458, 'Dang', 'Xã', '15 49 38N, 107 33 35E', 504),
-(20461, 'Ch''ơm', 'Xã', '15 48 41N, 107 15 13E', 504),
+(20461, 'Ch\'ơm', 'Xã', '15 48 41N, 107 15 13E', 504),
 (20464, 'Ga Ri', 'Xã', '15 46 02N, 107 15 48E', 504),
 (20467, 'P Rao', 'Thị Trấn', '15 55 41N, 107 38 50E', 505),
 (20470, 'Tà Lu', 'Xã', '15 57 42N, 107 40 21E', 505),
@@ -7643,8 +7709,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (20842, 'Bình Quế', 'Xã', '15 37 55N, 108 21 59E', 513),
 (20845, 'Bình An', 'Xã', '15 38 37N, 108 24 43E', 513),
 (20848, 'Bình Trung', 'Xã', '15 40 14N, 108 24 59E', 513),
-(20851, 'Bình Nam', 'Xã', '15 39 16N, 108 28 46E', 513);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(20851, 'Bình Nam', 'Xã', '15 39 16N, 108 28 46E', 513),
 (20854, 'Tiên Kỳ', 'Thị Trấn', '15 30 33N, 108 17 59E', 514),
 (20857, 'Tiên Sơn', 'Xã', '15 34 59N, 108 16 10E', 514),
 (20860, 'Tiên Hà', 'Xã', '15 32 36N, 108 14 20E', 514),
@@ -8113,7 +8178,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (22372, 'Phước Hòa', 'Phường', '12 14 08N, 109 11 15E', 568),
 (22375, 'Vĩnh Nguyên', 'Phường', '12 12 29N, 109 17 00E', 568),
 (22378, 'Phước Long', 'Phường', '12 13 02N, 109 11 15E', 568),
-(22381, 'Vĩnh Trường', 'Phường', '12 11 54N, 109 12 14E', 568),
+(22381, 'Vĩnh Trường', 'Phường', '12 11 54N, 109 12 14E', 568);
+INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
 (22384, 'Vĩnh Lương', 'Xã', '12 20 34N, 109 10 43E', 568),
 (22387, 'Vĩnh Phương', 'Xã', '12 18 20N, 109 08 56E', 568),
 (22390, 'Vĩnh Ngọc', 'Xã', '12 16 33N, 109 10 08E', 568),
@@ -8475,8 +8541,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (23593, 'Tân Sơn', 'Xã', '14 03 51N, 108 01 50E', 622),
 (23596, 'Trà Đa', 'Xã', '14 00 37N, 108 02 35E', 622),
 (23599, 'Chư Á', 'Xã', '13 58 17N, 108 03 12E', 622),
-(23602, 'An Phú', 'Xã', '13 59 01N, 108 04 52E', 622);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(23602, 'An Phú', 'Xã', '13 59 01N, 108 04 52E', 622),
 (23605, 'Diên Phú', 'Xã', '13 56 34N, 107 58 08E', 622),
 (23608, 'Ia Kênh', 'Xã', '13 54 22N, 107 58 28E', 622),
 (23611, 'Gào', 'Xã', '13 52 17N, 107 55 25E', 622),
@@ -8509,8 +8574,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (23689, 'Kon Gang', 'Xã', '14 05 10N, 108 09 13E', 626),
 (23692, 'Hà Bầu', 'Xã', '14 03 31N, 108 04 19E', 626),
 (23695, 'Nam Yang', 'Xã', '14 03 36N, 108 05 48E', 626),
-(23698, 'K'' Dang', 'Xã', '14 01 10N, 108 11 35E', 626),
-(23701, 'H'' Neng', 'Xã', '14 01 03N, 108 06 04E', 626),
+(23698, 'K\' Dang', 'Xã', '14 01 10N, 108 11 35E', 626),
+(23701, 'H\' Neng', 'Xã', '14 01 03N, 108 06 04E', 626),
 (23704, 'Tân Bình', 'Xã', '13 59 25N, 108 08 53E', 626),
 (23707, 'Glar', 'Xã', '13 56 45N, 108 08 11E', 626),
 (23710, 'A Dơk', 'Xã', '13 56 38N, 108 05 29E', 626),
@@ -8657,7 +8722,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (24175, 'Hòa Khánh', 'Xã', '12 36 12N, 107 59 57E', 643),
 (24178, 'Hòa Xuân', 'Xã', '12 39 26N, 107 56 50E', 643),
 (24181, 'Ea Drăng', 'Thị Trấn', '13 12 22N, 108 12 19E', 645),
-(24184, 'Ea H''leo', 'Xã', '13 20 19N, 108 05 38E', 645),
+(24184, 'Ea H\'leo', 'Xã', '13 20 19N, 108 05 38E', 645),
 (24187, 'Ea Sol', 'Xã', '13 17 28N, 108 18 29E', 645),
 (24190, 'Ea Ral', 'Xã', '13 15 23N, 108 11 10E', 645),
 (24193, 'Ea Wy', 'Xã', '13 12 52N, 108 01 58E', 645),
@@ -8673,7 +8738,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (24223, 'Ea Lê', 'Xã', '13 07 03N, 107 54 31E', 646),
 (24226, 'Cư Kbang', 'Xã', '13 10 58N, 107 54 40E', 646),
 (24229, 'Ea Bung', 'Xã', '13 09 07N, 107 41 41E', 646),
-(24232, 'Cư M''lan', 'Xã', '13 02 04N, 107 51 59E', 646),
+(24232, 'Cư M\'lan', 'Xã', '13 02 04N, 107 51 59E', 646),
 (24235, 'Krông Na', 'Xã', '12 56 01N, 107 43 34E', 647),
 (24238, 'Ea Huar', 'Xã', '12 53 00N, 107 51 50E', 647),
 (24241, 'Ea Wer', 'Xã', '12 50 09N, 107 52 18E', 647),
@@ -8686,15 +8751,15 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (24262, 'Quảng Tiến', 'Xã', '12 49 10N, 108 02 18E', 648),
 (24265, 'Ea Kiết', 'Xã', '12 59 49N, 108 01 54E', 648),
 (24268, 'Ea Tar', 'Xã', '12 56 26N, 108 05 17E', 648),
-(24271, 'Cư Dliê M''nông', 'Xã', '12 56 11N, 108 09 34E', 648),
-(24274, 'Ea H''đinh', 'Xã', '13 53 32N, 108 02 56E', 648),
+(24271, 'Cư Dliê M\'nông', 'Xã', '12 56 11N, 108 09 34E', 648),
+(24274, 'Ea H\'đinh', 'Xã', '13 53 32N, 108 02 56E', 648),
 (24277, 'Ea Tul', 'Xã', '12 51 56N, 108 10 18E', 648),
 (24280, 'Ea Kpam', 'Xã', '12 52 20N, 108 06 15E', 648),
-(24283, 'Ea M''dróh', 'Xã', '12 54 20N, 107 58 24E', 648),
+(24283, 'Ea M\'dróh', 'Xã', '12 54 20N, 107 58 24E', 648),
 (24286, 'Quảng Hiệp', 'Xã', '12 52 11N, 107 58 11E', 648),
-(24289, 'Cư M''gar', 'Xã', '12 50 45N, 108 03 01E', 648),
-(24292, 'Ea D''rơng', 'Xã', '12 47 10N, 108 10 00E', 648),
-(24295, 'Ea M''nang', 'Xã', '12 48 49N, 107 59 11E', 648),
+(24289, 'Cư M\'gar', 'Xã', '12 50 45N, 108 03 01E', 648),
+(24292, 'Ea D\'rơng', 'Xã', '12 47 10N, 108 10 00E', 648),
+(24295, 'Ea M\'nang', 'Xã', '12 48 49N, 107 59 11E', 648),
 (24298, 'Cư Suê', 'Xã', '12 46 06N, 108 02 39E', 648),
 (24301, 'Cuor Đăng', 'Xã', '12 44 42N, 108 10 53E', 648),
 (24307, 'Cư Né', 'Xã', '13 04 58N, 108 11 49E', 649),
@@ -8729,15 +8794,15 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (24404, 'Cư Elang', 'Xã', '12 39 08N, 108 31 21E', 651),
 (24406, 'Cư Bông', 'Xã', '12 38 41N, 108 37 36E', 651),
 (24409, 'Cư Jang', 'Xã', '12 40 06N, 108 38 09E', 651),
-(24412, 'M''đrắk', 'Thị Trấn', '12 45 02N, 108 44 31E', 652),
+(24412, 'M\'đrắk', 'Thị Trấn', '12 45 02N, 108 44 31E', 652),
 (24415, 'Cư Prao', 'Xã', '12 53 54N, 108 42 01E', 652),
 (24418, 'Ea Pil', 'Xã', '12 49 02N, 108 38 07E', 652),
 (24421, 'Ea Lai', 'Xã', '12 49 43N, 108 44 08E', 652),
-(24424, 'Ea H''mlay', 'Xã', '12 49 30N, 108 48 12E', 652),
+(24424, 'Ea H\'mlay', 'Xã', '12 49 30N, 108 48 12E', 652),
 (24427, 'Krông Jing', 'Xã', '12 45 39N, 108 42 06E', 652),
-(24430, 'Ea M'' Doal', 'Xã', '12 48 19N, 108 52 46E', 652),
+(24430, 'Ea M\' Doal', 'Xã', '12 48 19N, 108 52 46E', 652),
 (24433, 'Ea Riêng', 'Xã', '12 46 04N, 108 47 58E', 652),
-(24436, 'Cư M''ta', 'Xã', '12 42 39N, 108 46 28E', 652),
+(24436, 'Cư M\'ta', 'Xã', '12 42 39N, 108 46 28E', 652),
 (24439, 'Cư K Róa', 'Xã', '12 44 29N, 108 53 07E', 652),
 (24442, 'Krông Á', 'Xã', '12 40 51N, 108 42 42E', 652),
 (24445, 'Ea Trang', 'Xã', '12 34 29N, 108 49 34E', 652),
@@ -8788,14 +8853,14 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (24601, 'Đắk Nuê', 'Xã', '12 18 52N, 108 09 41E', 656),
 (24604, 'Krông Nô', 'Xã', '12 14 20N, 108 15 06E', 656),
 (24607, 'Nam Ka', 'Xã', '12 19 06N, 108 02 42E', 656),
-(24610, 'Ea R''bin', 'Xã', '12 21 36N, 107 57 39E', 656),
+(24610, 'Ea R\'bin', 'Xã', '12 21 36N, 107 57 39E', 656),
 (24616, 'Quảng Sơn', 'Xã', '12 09 17N, 107 54 49E', 661),
 (24622, 'Đắk Ha', 'Xã', '12 02 55N, 107 47 42E', 661),
-(24625, 'Đắk R''măng', 'Xã', '12 00 10N, 107 56 12E', 661),
+(24625, 'Đắk R\'măng', 'Xã', '12 00 10N, 107 56 12E', 661),
 (24631, 'Quảng Khê', 'Xã', '11 50 30N, 107 49 33E', 661),
 (24634, 'Đắk Plao', 'Xã', '11 53 22N, 107 01 14E', 661),
 (24637, 'Đắk Som', 'Xã', '11 52 41N, 107 55 10E', 661),
-(24640, 'Ea T''ling', 'Thị Trấn', '12 35 02N, 107 53 25E', 662),
+(24640, 'Ea T\'ling', 'Thị Trấn', '12 35 02N, 107 53 25E', 662),
 (24643, 'Đắk Wil', 'Xã', '12 42 16N, 107 42 08E', 662),
 (24646, 'Ea Pô', 'Xã', '12 44 29N, 107 50 59E', 662),
 (24649, 'Nam Dong', 'Xã', '12 38 33N, 107 52 19E', 662),
@@ -8805,7 +8870,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (24661, 'Trúc Sơn', 'Xã', '12 34 56N, 107 50 44E', 662),
 (24664, 'Đắk Mil', 'Thị Trấn', '12 26 59N, 107 37 06E', 663),
 (24667, 'Đắk Lao', 'Xã', '12 33 55N, 107 37 53E', 663),
-(24670, 'Đắk R''la', 'Xã', '12 33 11N, 107 44 46E', 663),
+(24670, 'Đắk R\'la', 'Xã', '12 33 11N, 107 44 46E', 663),
 (24673, 'Đắk Gằn', 'Xã', '12 32 18N, 107 48 39E', 663),
 (24676, 'Đức Mạnh', 'Xã', '12 29 57N, 107 40 54E', 663),
 (24679, 'Đắk Sắk', 'Xã', '12 26 07N, 107 42 18E', 663),
@@ -8820,7 +8885,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (24706, 'Đức Xuyên', 'Xã', '12 18 05N, 107 52 08E', 664),
 (24709, 'Đắk Nang', 'Xã', '12 17 05N, 107 55 46E', 664),
 (24712, 'Quảng Phú', 'Xã', '12 15 12N, 108 01 19E', 664),
-(24715, 'Nâm N''đir', 'Xã', '12 19 48N, 107 49 33E', 664),
+(24715, 'Nâm N\'đir', 'Xã', '12 19 48N, 107 49 33E', 664),
 (24718, 'Đắk Môl', 'Xã', '12 19 31N, 107 41 28E', 665),
 (24721, 'Nam Bình', 'Xã', '12 17 02N, 107 35 52E', 665),
 (24724, 'Thuận Hạnh', 'Xã', '12 18 05N, 107 31 01E', 665),
@@ -8853,7 +8918,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (24817, 'Lộc Tiến', 'Phường', '11 33 06N, 107 46 13E', 673),
 (24820, '2', 'Phường', '11 33 19N, 107 47 37E', 673),
 (24823, '1', 'Phường', '11 33 23N, 107 48 46E', 673),
-(24826, 'B''lao', 'Phường', '11 31 49N, 107 47 46E', 673),
+(24826, 'B\'lao', 'Phường', '11 31 49N, 107 47 46E', 673),
 (24832, 'Đạm Bri', 'Xã', '11 36 36N, 107 46 03E', 673),
 (24835, 'Lộc Thanh', 'Xã', '11 34 06N, 107 51 28E', 673),
 (24838, 'Lộc Nga', 'Xã', '11 32 02N, 107 51 40E', 673),
@@ -8865,12 +8930,12 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (24850, 'Đưng Knớ', 'Xã', '12 13 44N, 108 25 04E', 675),
 (24853, 'Đạ Tông', 'Xã', '12 07 35N, 108 18 29E', 674),
 (24856, 'Đạ Long', 'Xã', '12 07 05N, 108 14 16E', 674),
-(24859, 'Đạ M''rong (Đam Rong);', 'Xã', '12 08 42N, 108 19 42E', 674),
+(24859, 'Đạ M\'rong (Đam Rong);', 'Xã', '12 08 42N, 108 19 42E', 674),
 (24862, 'Lát', 'Xã', '12 04 47N, 108 25 36E', 675),
 (24865, 'Đạ Sar', 'Xã', '12 02 08N, 108 34 20E', 675),
 (24868, 'Nam Ban', 'Thị Trấn', '11 50 29N, 108 18 53E', 676),
 (24871, 'Đinh Văn', 'Thị Trấn', '11 46 42N, 108 15 48E', 676),
-(24874, 'Liêng S''roin', 'Xã', '12 05 35N, 108 04 55E', 674),
+(24874, 'Liêng S\'roin', 'Xã', '12 05 35N, 108 04 55E', 674),
 (24875, 'Đạ Rsal', 'Xã', '12 08 41N, 108 08 21E', 674),
 (24877, 'Rô Men', 'Xã', '12 03 41N, 108 11 33E', 674),
 (24880, 'Phú Sơn', 'Xã', '11 57 47N, 108 14 07E', 676),
@@ -8889,7 +8954,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (24919, 'Liên Hà', 'Xã', '11 41 49N, 108 07 43E', 676),
 (24922, 'Đan Phượng', 'Xã', '11 41 14N, 108 11 44E', 676),
 (24925, 'Nam Hà', 'Xã', '11 50 32N, 108 17 17E', 676),
-(24928, 'D''ran', 'Thị Trấn', '11 52 52N, 108 36 47E', 677),
+(24928, 'D\'ran', 'Thị Trấn', '11 52 52N, 108 36 47E', 677),
 (24931, 'Thạnh Mỹ', 'Thị Trấn', '11 46 15N, 108 29 10E', 677),
 (24934, 'Lạc Xuân', 'Xã', '11 46 57N, 108 36 36E', 677),
 (24937, 'Đạ Ròn', 'Xã', '11 46 57N, 108 27 34E', 677),
@@ -8904,7 +8969,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (24964, 'Liên Hiệp', 'Xã', '11 46 57N, 108 22 15E', 678),
 (24967, 'Hiệp Thạnh', 'Xã', '11 46 53N, 108 24 50E', 678),
 (24970, 'Bình Thạnh', 'Xã', '11 46 49N, 108 17 14E', 678),
-(24973, 'N''thol Hạ', 'Xã', '11 46 09N, 108 18 46E', 678),
+(24973, 'N\'thol Hạ', 'Xã', '11 46 09N, 108 18 46E', 678),
 (24976, 'Tân Hội', 'Xã', '11 43 18N, 108 17 10E', 678),
 (24979, 'Tân Thành', 'Xã', '11 42 11N, 108 16 00E', 678),
 (24982, 'Phú Hội', 'Xã', '11 39 53N, 108 20 59E', 678),
@@ -8936,7 +9001,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (25060, 'Lộc Lâm', 'Xã', '11 48 15N, 107 49 29E', 680),
 (25063, 'Lộc Phú', 'Xã', '11 45 24N, 107 52 20E', 680),
 (25066, 'Lộc Bắc', 'Xã', '11 44 50N, 107 36 18E', 680),
-(25069, 'B'' Lá', 'Xã', '11 42 59N, 107 43 37E', 680),
+(25069, 'B\' Lá', 'Xã', '11 42 59N, 107 43 37E', 680),
 (25072, 'Lộc Ngãi', 'Xã', '11 39 19N, 107 51 35E', 680),
 (25075, 'Lộc Quảng', 'Xã', '11 37 57N, 107 46 14E', 680),
 (25078, 'Lộc Tân', 'Xã', '11 34 59N, 107 42 30E', 680),
@@ -8945,9 +9010,9 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (25087, 'Tân Lạc', 'Xã', '11 28 37N, 107 52 08E', 680),
 (25090, 'Lộc Thành', 'Xã', '11 26 24N, 107 50 06E', 680),
 (25093, 'Lộc Nam', 'Xã', '11 23 58N, 107 52 00E', 680),
-(25096, 'Đạ M''ri', 'Thị Trấn', '11 25 52N, 107 41 02E', 681),
+(25096, 'Đạ M\'ri', 'Thị Trấn', '11 25 52N, 107 41 02E', 681),
 (25099, 'Ma Đa Guôi', 'Thị Trấn', '11 23 23N, 107 32 57E', 681),
-(25102, 'Đạ M''ri', 'Xã', '11 29 46N, 107 40 16E', 681),
+(25102, 'Đạ M\'ri', 'Xã', '11 29 46N, 107 40 16E', 681),
 (25105, 'Hà Lâm', 'Xã', '11 23 24N, 107 35 59E', 681),
 (25108, 'Đạ Tồn', 'Xã', '11 27 38N, 107 33 05E', 681),
 (25111, 'Đạ Oai', 'Xã', '11 26 49N, 107 30 00E', 681),
@@ -9011,7 +9076,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (25300, 'Lộc Điền', 'Xã', '11 48 06N, 106 39 28E', 692),
 (25303, 'Lộc Hưng', 'Xã', '11 46 29N, 106 34 12E', 692),
 (25306, 'Lộc Khánh', 'Xã', '11 46 05N, 106 38 11E', 692),
-(25309, 'Hưng Phước', 'Xã', '12 01 59N, 106 52 43E', 693),
+(25309, 'Hưng Phước', 'Xã', '12 01 59N, 106 52 43E', 693);
+INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
 (25312, 'Thiện Hưng', 'Xã', '12 00 19N, 106 46 28E', 693),
 (25315, 'Thanh Hòa', 'Xã', '11 57 10N, 106 47 06E', 693),
 (25318, 'Tân Thành', 'Xã', '11 55 49N, 106 42 31E', 693),
@@ -9321,8 +9387,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (26233, 'Phú Ngọc', 'Xã', '11 08 04N, 107 18 26E', 736),
 (26236, 'Phú Cường', 'Xã', '11 07 34N, 107 09 02E', 736),
 (26239, 'Túc Trưng', 'Xã', '11 07 16N, 107 13 27E', 736),
-(26242, 'Phú Túc', 'Xã', '11 04 46N, 107 13 22E', 736);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(26242, 'Phú Túc', 'Xã', '11 04 46N, 107 13 22E', 736),
 (26245, 'Suối Nho', 'Xã', '11 03 41N, 107 16 25E', 736),
 (26248, 'Trảng Bom', 'Thị Trấn', '10 57 43N, 106 59 57E', 737),
 (26251, 'Thanh Bình', 'Xã', '11 04 18N, 107 05 09E', 737),
@@ -9898,7 +9963,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (27961, 'Tân Phú', 'Xã', '10 53 59N, 106 21 18E', 802),
 (27964, 'Mỹ Hạnh Bắc', 'Xã', '10 54 00N, 106 29 28E', 802),
 (27967, 'Đức Hòa Thượng', 'Xã', '10 52 06N, 106 27 05E', 802),
-(27970, 'Hòa Khánh Tây', 'Xã', '10 51 27N, 106 22 20E', 802),
+(27970, 'Hòa Khánh Tây', 'Xã', '10 51 27N, 106 22 20E', 802);
+INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
 (27973, 'Hòa Khánh Đông', 'Xã', '10 51 10N, 106 25 03E', 802),
 (27976, 'Mỹ Hạnh Nam', 'Xã', '10 52 01N, 106 29 18E', 802),
 (27979, 'Hòa Khánh Nam', 'Xã', '10 50 04N, 106 23 51E', 802),
@@ -10149,8 +10215,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (28738, 'Tân Điền', 'Xã', '10 20 09N, 106 47 52E', 824),
 (28741, 'Bình Nghị', 'Xã', '10 20 28N, 106 42 25E', 824),
 (28744, 'Phước Trung', 'Xã', '10 18 13N, 106 41 23E', 824),
-(28747, 'Tân Thành', 'Xã', '10 17 54N, 106 45 27E', 824);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(28747, 'Tân Thành', 'Xã', '10 17 54N, 106 45 27E', 824),
 (28756, 'Phú Khương', 'Phường', '10 15 27N, 106 22 21E', 829),
 (28759, '8', 'Phường', '10 14 44N, 106 23 13E', 829),
 (28762, '6', 'Phường', '10 14 43N, 106 21 37E', 829),
@@ -10787,7 +10852,8 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (30778, 'Mỹ Đức', 'Xã', '10 24 46N, 104 27 54E', 900),
 (30781, 'Tiên Hải', 'Xã', '10 19 07N, 104 19 45E', 900),
 (30784, 'Thuận Yên', 'Xã', '10 20 59N, 104 32 00E', 900),
-(30787, 'Kiên Lương', 'Thị Trấn', '10 16 10N, 104 37 50E', 902),
+(30787, 'Kiên Lương', 'Thị Trấn', '10 16 10N, 104 37 50E', 902);
+INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
 (30790, 'Kiên Bình', 'Xã', '10 19 31N, 104 41 34E', 902),
 (30802, 'Hòa Điền', 'Xã', '10 21 09N, 104 37 45E', 902),
 (30805, 'Dương Hòa', 'Xã', '10 16 20N, 104 34 36E', 902),
@@ -10977,8 +11043,7 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 (31405, 'Thạnh Hòa', 'Xã', '9 53 19N, 105 41 59E', 934),
 (31417, 'Phụng Hiệp', 'Xã', '9 49 36N, 105 46 32E', 934),
 (31420, 'Hòa Mỹ', 'Xã', '9 49 18N, 105 41 30E', 934),
-(31423, 'Hòa An', 'Xã', '9 46 23N, 105 38 19E', 934);
-INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_DISTRICT_ID`) VALUES
+(31423, 'Hòa An', 'Xã', '9 46 23N, 105 38 19E', 934),
 (31426, 'Phương Bình', 'Xã', '9 43 40N, 105 40 09E', 934),
 (31429, 'Hiệp Hưng', 'Xã', '9 45 43N, 105 44 22E', 934),
 (31432, 'Tân Phước Hưng', 'Xã', '9 44 56N, 105 47 20E', 934),
@@ -11239,22 +11304,111 @@ INSERT INTO `ward` (`WARD_ID`, `WARD_NAME`, `WARD_TYPE`, `WARD_LOCATION`, `WARD_
 -- Table structure for table `zone`
 --
 
-CREATE TABLE IF NOT EXISTS `zone` (
+CREATE TABLE `zone` (
   `ZONE_ID` int(11) NOT NULL,
-  `ZONE_USERNAME` varchar(20) NOT NULL,
+  `ZONE_USER_ID` int(11) NOT NULL,
   `ZONE_NAME` varchar(50) CHARACTER SET utf8 NOT NULL,
   `ZONE_ADDRESS` varchar(100) CHARACTER SET utf8 NOT NULL,
   `ZONE_LOGITUDE` varchar(255) NOT NULL,
   `ZONE_LATITUDE` varchar(255) NOT NULL,
-  `ZONE_PROVINCE_ID` int(11) NOT NULL,
-  `ZONE_DISTRICT_ID` int(11) NOT NULL,
   `ZONE_WARD_ID` int(11) NOT NULL,
-  PRIMARY KEY (`ZONE_ID`),
-  KEY `FK_zone_ward` (`ZONE_WARD_ID`),
-  KEY `FK_zone_district` (`ZONE_DISTRICT_ID`),
-  KEY `FK_zone_user` (`ZONE_USERNAME`),
-  KEY `FK_zone_province` (`ZONE_PROVINCE_ID`)
+  `ZONE_DISTRICT_ID` int(11) NOT NULL,
+  `ZONE_PROVINCE_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `zone`
+--
+
+INSERT INTO `zone` (`ZONE_ID`, `ZONE_USER_ID`, `ZONE_NAME`, `ZONE_ADDRESS`, `ZONE_LOGITUDE`, `ZONE_LATITUDE`, `ZONE_WARD_ID`, `ZONE_DISTRICT_ID`, `ZONE_PROVINCE_ID`) VALUES
+(1, 7, 'Khu Nguyễn Hoàng', '273 Nguyễn Hoàng', '108.212987', '16.056950', 20251, 492, 48),
+(2, 5, 'Nhà nguyên căn giá rẻ TTTP', '41 Núi Thành', '108.220231', '16.052551', 20246, 492, 48),
+(3, 3, 'Khu trọ bình dân gần ĐH Duy Tân', '122 Phan Thanh', '108.209071', '16.061655', 20221, 491, 48),
+(4, 5, 'Nhà trọ sinh viên  Hòa Khánh', '65 Nguyễn Xí', '108.170398', '16.070901', 20200, 490, 48),
+(5, 3, 'Khu Hòa Khánh Giá Rẻ', '128 Phạm Như Xương', '108.150745\r\n\r\n', '16.065213', 20198, 490, 48),
+(6, 3, 'Phòng trọ đường Ngô Thì Nhậm', '69 Ngô Thì Nhậm', '108.155374', '16.071584', 20197, 490, 48);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `contract`
+--
+ALTER TABLE `contract`
+  ADD PRIMARY KEY (`CONTRACT_ROOM_ID`,`CONTRACT_USERS_ID`),
+  ADD KEY `FK_contract_user` (`CONTRACT_USERS_ID`);
+
+--
+-- Indexes for table `district`
+--
+ALTER TABLE `district`
+  ADD PRIMARY KEY (`DISTRICT_ID`),
+  ADD KEY `FK_district_province` (`DISTRICT_PROVINCE_ID`);
+
+--
+-- Indexes for table `image`
+--
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`IMAGE_ID`),
+  ADD KEY `FK_image_room` (`IMAGE_ROOM_ID`);
+
+--
+-- Indexes for table `province`
+--
+ALTER TABLE `province`
+  ADD PRIMARY KEY (`PROVINCE_ID`);
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`ROLE_ID`);
+
+--
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`ROOM_ID`),
+  ADD KEY `FK_room_type` (`ROOM_TYPE_ID`),
+  ADD KEY `FK_room_status` (`ROOM_STATUS_ID`),
+  ADD KEY `FK_room_zone` (`ROOM_ZONE_ID`);
+
+--
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`STATUS_ID`);
+
+--
+-- Indexes for table `type`
+--
+ALTER TABLE `type`
+  ADD PRIMARY KEY (`TYPE_ID`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`USERS_ID`),
+  ADD KEY `NewIndex1` (`USERS_ROLE_ID`);
+
+--
+-- Indexes for table `ward`
+--
+ALTER TABLE `ward`
+  ADD PRIMARY KEY (`WARD_ID`),
+  ADD KEY `FK_ward_district` (`WARD_DISTRICT_ID`);
+
+--
+-- Indexes for table `zone`
+--
+ALTER TABLE `zone`
+  ADD PRIMARY KEY (`ZONE_ID`),
+  ADD KEY `FK_zone_ward` (`ZONE_PROVINCE_ID`),
+  ADD KEY `FK_zone_district` (`ZONE_DISTRICT_ID`),
+  ADD KEY `FK_zone_user` (`ZONE_USER_ID`),
+  ADD KEY `FK_zone_province` (`ZONE_WARD_ID`);
 
 --
 -- Constraints for dumped tables
@@ -11265,7 +11419,7 @@ CREATE TABLE IF NOT EXISTS `zone` (
 --
 ALTER TABLE `contract`
   ADD CONSTRAINT `FK_contract_room` FOREIGN KEY (`CONTRACT_ROOM_ID`) REFERENCES `room` (`ROOM_ID`),
-  ADD CONSTRAINT `FK_contract_user` FOREIGN KEY (`CONTRACT_USERS_USERNAME`) REFERENCES `users` (`USERS_USERNAME`);
+  ADD CONSTRAINT `FK_contract_user` FOREIGN KEY (`CONTRACT_USERS_ID`) REFERENCES `users` (`USERS_ID`);
 
 --
 -- Constraints for table `district`
@@ -11283,9 +11437,9 @@ ALTER TABLE `image`
 -- Constraints for table `room`
 --
 ALTER TABLE `room`
-  ADD CONSTRAINT `FK_room_zone` FOREIGN KEY (`ROOM_ZONE_ID`) REFERENCES `zone` (`ZONE_ID`),
   ADD CONSTRAINT `FK_room_status` FOREIGN KEY (`ROOM_STATUS_ID`) REFERENCES `status` (`STATUS_ID`),
-  ADD CONSTRAINT `FK_room_type` FOREIGN KEY (`ROOM_TYPE_ID`) REFERENCES `type` (`TYPE_ID`);
+  ADD CONSTRAINT `FK_room_type` FOREIGN KEY (`ROOM_TYPE_ID`) REFERENCES `type` (`TYPE_ID`),
+  ADD CONSTRAINT `FK_room_zone` FOREIGN KEY (`ROOM_ZONE_ID`) REFERENCES `zone` (`ZONE_ID`);
 
 --
 -- Constraints for table `users`
@@ -11303,10 +11457,11 @@ ALTER TABLE `ward`
 -- Constraints for table `zone`
 --
 ALTER TABLE `zone`
-  ADD CONSTRAINT `FK_zone_province` FOREIGN KEY (`ZONE_PROVINCE_ID`) REFERENCES `province` (`PROVINCE_ID`),
-  ADD CONSTRAINT `FK_zone_district` FOREIGN KEY (`ZONE_DISTRICT_ID`) REFERENCES `district` (`DISTRICT_ID`),
-  ADD CONSTRAINT `FK_zone_user` FOREIGN KEY (`ZONE_USERNAME`) REFERENCES `users` (`USERS_USERNAME`),
-  ADD CONSTRAINT `FK_zone_ward` FOREIGN KEY (`ZONE_WARD_ID`) REFERENCES `ward` (`WARD_ID`);
+  ADD CONSTRAINT `FK_zone_user` FOREIGN KEY (`ZONE_USER_ID`) REFERENCES `users` (`USERS_ID`),
+  ADD CONSTRAINT `zone_ibfk_1` FOREIGN KEY (`ZONE_WARD_ID`) REFERENCES `ward` (`WARD_ID`),
+  ADD CONSTRAINT `zone_ibfk_2` FOREIGN KEY (`ZONE_DISTRICT_ID`) REFERENCES `district` (`DISTRICT_ID`),
+  ADD CONSTRAINT `zone_ibfk_3` FOREIGN KEY (`ZONE_PROVINCE_ID`) REFERENCES `province` (`PROVINCE_ID`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
