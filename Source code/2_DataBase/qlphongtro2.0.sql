@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 26, 2018 lúc 06:43 AM
+-- Thời gian đã tạo: Th10 27, 2018 lúc 05:37 AM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `qlphongtro1`
+-- Cơ sở dữ liệu: `qlphongtro`
 --
 
 -- --------------------------------------------------------
@@ -933,7 +933,7 @@ INSERT INTO `type` (`TYPE_ID`, `TYPE_NAME`) VALUES
 
 CREATE TABLE `users` (
   `USERS_ID` int(11) NOT NULL,
-  `USERS_ID_FACEBOOK` int(15) NOT NULL,
+  `USERS_ID_FACEBOOK` int(20) NOT NULL,
   `USERS_USERNAME` varchar(20) NOT NULL,
   `USERS_PASSWORD` varchar(20) NOT NULL,
   `USERS_NAME` varchar(50) CHARACTER SET utf8 NOT NULL,
