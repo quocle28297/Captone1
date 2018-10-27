@@ -20,11 +20,11 @@ function connect ($conn)
 function fill_Provider($conn)
 {
 	$output = '';
-	$query = "SELECT * FROM provider";
+	$query = "SELECT * FROM PROVINCE";
 	$result1 = mysqli_query($conn,$query);
 	while($row = mysqli_fetch_array($result1)) 
 	{
-		$output.='<option value="'.$row["PROVIDER_ID"].'">'.$row["PROVIDER_NAME"].'</option>';
+		$output.='<option value="'.$row["PROVINCE_ID"].'">'.$row["PROVINCE_NAME"].'</option>';
 	}
 	return $output;
 }

@@ -1,3 +1,13 @@
+<?php
+    require_once "config.php";
+
+   
+
+    $redirectURL = "http://localhost/text/20_10_2017/1_Sourse/interface/fb-callback.php";
+    $permissions = ['email'];
+    $loginURL = $helper->getLoginUrl($redirectURL, $permissions);
+?>
+
 
 <?php include("data.php") ?>
 <!DOCTYPE html>
@@ -25,7 +35,7 @@
         <link href="css/style.css" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
         <!--icon facebook
-            -->
+        -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
@@ -203,7 +213,8 @@
                                                         <div class="tab-pane fade in active" id="login">
                                                             <div class="signup-form-container text-center">
                                                                 <form class="mb-0">
-                                                                    <a href="#" class="btn btn--facebook btn--block"><i class="fa fa-facebook-square"></i>Login with Facebook</a>
+                                                                <a type="button" onclick="window.location = '<?php echo $loginURL ?>';" value="Log In With Facebook" class="btn btn--facebook btn--block"><i class="fa fa-facebook-square"></i>Login with Facebook</a>
+
                                                                     <div class="or-text">
                                                                         <span>or</span>
                                                                     </div>
@@ -222,7 +233,7 @@
                                                                             <span class="check-indicator"></span>
                                                                         </label>
                                                                     </div>
-                                                                    <input type="submit" class="btn btn--primary btn--block" fvalue="Sign In">
+                                                                    <input type="submit" class="btn btn--primary btn--block" value="Sign In">
                                                                     <a href="#" class="forget-password">Forget your password?</a>
                                                                 </form>
                                                                 <!-- form  end -->
@@ -237,14 +248,17 @@
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <input type="text" class="form-control" name="full-name" id="full-name" placeholder="Full Name">
+                                                                    <span class="form-error" id="full-name-error-message">tets</span>
                                                                 </div>
                                                                 <!-- .form-group end -->
                                                                 <div class="form-group">
                                                                     <input type="email" class="form-control" name="register-email" id="register-email" placeholder="Email Address">
+                                                                    <span class="form-error" id="email-error-message">tets</span>
                                                                 </div>
                                                                 <!-- .form-group end -->
                                                                 <div class="form-group">
                                                                     <input type="password" class="form-control" name="register-password" id="register-password" placeholder="Password">
+                                                                    <span class="form-error" id="Password-error-message">tets</span>
                                                                 </div>
                                                                 <!-- .form-group end -->
                                                                 <div class="input-checkbox">
@@ -297,7 +311,7 @@
                                                 <div class="form-group">
                                                     <div class="select--box">
                                                         <i class="fa fa-angle-down"></i>
-                                                        <select name="select-Provider" id="select-Provider">
+                                                        <select name="select-Province" id="select-Province">
                                                             <option value="">Tỉnh/Thành Phố</option>
                                                             <?php echo fill_Provider($conn); ?>
                                                         </select>
@@ -370,9 +384,9 @@
                                                     <div class="slider-range"></div>
                                                 </div>
                                             </div>
-                                             .col-md-3 end -->
+                                            .col-md-3 end -->
                                             <div class="col-xs-12 col-sm-12 col-md-12">
-                                                <a href="#" class="less--options">More options</a>
+                                                <a class="less--options">More options</a>
                                             </div>
                                         </div>
                                         <!-- .row end -->
@@ -471,32 +485,31 @@
 </html>
 <script>  
     //load quan huyen
-   $(document).ready(function(){  
-      $('#select-Provider').change(function(){  
-         var PROVIDER_ID = $(this).val();  
-         $.ajax({  
-            url:"District.php",  
-            method:"POST",  
-            data:{PROVIDER_ID:PROVIDER_ID},  
-            success:function(data){  
-               $('#select-District').html(data);  
-           }  
-       });  
-     });  
+    $(document).ready(function(){  
+      $('#select-Province').change(function(){  
+       var PROVINCE_ID = $(this).val();  
+       $.ajax({  
+        url:"District.php",  
+        method:"POST",  
+        data:{PROVINCE_ID:PROVINCE_ID},  
+        success:function(data){  
+         $('#select-District').html(data);  
+     }  
+ });  
+   });  
   }); 
-   
   //load phuong xa
-   $(document).ready(function(){  
+  $(document).ready(function(){  
       $('#select-District').change(function(){  
-         var DISTRICT_ID = $(this).val();  
-         $.ajax({  
-            url:"Ward.php",  
-            method:"POST",  
-            data:{DISTRICT_ID:DISTRICT_ID},  
-            success:function(data){  
-               $('#select-Ward').html(data);  
-           }  
-       });  
-     });  
+       var DISTRICT_ID = $(this).val();  
+       $.ajax({  
+        url:"Ward.php",  
+        method:"POST",  
+        data:{DISTRICT_ID:DISTRICT_ID},  
+        success:function(data){  
+         $('#select-Ward').html(data);  
+     }  
+ });  
+   });  
   });   
 </script>  

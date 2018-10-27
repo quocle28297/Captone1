@@ -215,3 +215,51 @@ var infoWindow;
           }
         });
       });
+        //-- check validation --//
+      $(function() {
+        $("#full-name-error-message").hide();
+        $("#email-error-message").hide();
+        $("#Password-error-message").hide();
+        
+        var error_fullname = false;
+        var error_email = false;
+        var error_password = false;
+
+        $("#full-name").focusout(function(){
+          check_fullname();
+        });
+        $("#register-email").focusout(function(){
+          check_email();
+        });
+
+        $("#register-password").focusout(function(){
+          check_password();
+        });
+
+      
+
+       function check_email(){
+        var pattern = new RegExp(/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm);
+
+        if(pattern.test($("#register-email").val())){
+         $("#email-error-message").hide();
+       }else {
+         $("#email-error-message").html("email không hợp lệ!!!");
+         $("#email-error-message").show();
+         error_email = true;       
+       }
+     }
+
+     function check_password(){
+      var check_password_length = $("#register-password").val().length;
+      if(check_password_length < 5){
+        $("#Password-error-message").html("Password  phải có  trên 5 ký tự!!!");
+        $("#Password-error-message").show();
+        error_password=true;
+      }else{
+       $("#Password-error-message").hide();
+
+     }
+   }
+
+ });

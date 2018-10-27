@@ -8,11 +8,11 @@ $databaseName="qlphongtro";
 $conn = new mysqli($servername, $username, $password,$databaseName);
 mysqli_set_charset($conn, 'UTF8');  
 $output = '';  
-if(isset($_POST["PROVIDER_ID"]))  
+if(isset($_POST["PROVINCE_ID"]))  
 {  
-  if($_POST["PROVIDER_ID"] != '')  
+  if($_POST["PROVINCE_ID"] != '')  
   {  
-   $sql = "SELECT * FROM District WHERE DISTRICT_PROVINCE_ID = '".$_POST["PROVIDER_ID"]."'";  
+   $sql = "SELECT * FROM District WHERE DISTRICT_PROVINCE_ID = '".$_POST["PROVINCE_ID"]."'";  
  }  
  else  
  {  
@@ -24,10 +24,6 @@ if(isset($_POST["PROVIDER_ID"]))
  {  
    $output.='<option value="'.$row["DISTRICT_ID"].'">'.$row["DISTRICT_NAME"].'</option>';
  }  
- // change  ward
-
  echo $output;  
- 
 }  
-	
 ?>  
