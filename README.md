@@ -1,6 +1,6 @@
 # Captone1
 Roomy - accommodation management.
-mentor: Mrs. VO VAN SON
+mentor: Mr. PHAN VAN SON
 
 member: LE HOANG QUOC.
         HUYNH QUOC NHAT.
