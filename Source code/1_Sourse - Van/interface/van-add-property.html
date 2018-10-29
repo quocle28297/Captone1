@@ -317,31 +317,34 @@
                             <div class="form-box">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <h4 class="form--title">Property Description</h4>
+                                        <h4 class="form--title">Thêm phòng</h4>
                                     </div>
                                     <!-- .col-md-12 end -->
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="property-title">Property Title*</label>
+                                            <label for="property-title">Tên phòng*</label>
                                             <input type="text" class="form-control" name="property-title" id="property-title" required="">
                                         </div>
                                     </div>
                                     <!-- .col-md-12 end -->
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
-                                            <label for="property-description">Property Description*</label>
+                                            <label for="property-description">Mô tả*</label>
                                             <textarea class="form-control" name="property-description" id="property-description" rows="2"></textarea>
                                         </div>
                                     </div>
                                     <!-- .col-md-12 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="select-type">Type</label>
+                                            <label for="select-type">Loại</label>
                                             <div class="select--box">
                                                 <i class="fa fa-angle-down"></i>
                                                 <select id="select-type">
-                                            <option>house</option>
-                                            <option>appartment</option>
+                                            <option>Chung cư</option>
+                                            <option>Nhà nguyên căn</option>
+											 <option>Phòng trọ</option>
+                                       
+											<option>Căn hộ</option>
                                         </select>
                                             </div>
                                         </div>
@@ -349,12 +352,12 @@
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="select-status">Status</label>
+                                            <label for="select-status">Tình trạng</label>
                                             <div class="select--box">
                                                 <i class="fa fa-angle-down"></i>
                                                 <select id="select-status">
-                                            <option>Sale</option>
-                                            <option>Rent</option>
+                                            <option>Cần cho thuê</option>
+                                            <option>Đang cho thuê</option>
                                         </select>
                                             </div>
                                         </div>
@@ -362,84 +365,69 @@
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="location">Location</label>
+                                            <label for="location">Vị trí</label>
                                             <input type="text" class="form-control" name="location" id="location">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="Bedrooms">Bedrooms</label>
+                                            <label for="Bedrooms">Phòng ngủ</label>
                                             <input type="text" class="form-control" name="Bedrooms" id="Bedrooms">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="Bathrooms">Bathrooms</label>
+                                            <label for="Bathrooms">Phòng tắm</label>
                                             <input type="text" class="form-control" name="Bathrooms" id="Bathrooms">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="Floors">Floors</label>
+                                            <label for="Floors">Tầng</label>
                                             <input type="text" class="form-control" name="Floors" id="Floors">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
-                                    <div class="col-xs-12 col-sm-4 col-md-4">
-                                        <div class="form-group">
-                                            <label for="Garages">Garages</label>
-                                            <input type="text" class="form-control" name="Garages" id="Garages">
-                                        </div>
-                                    </div>
+                                   
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="Area">Area</label>
+                                            <label for="Area">Khu</label>
                                             <input type="text" class="form-control" name="Area" id="Area" placeholder="sq ft">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="Size">Size</label>
+                                            <label for="Size">Diện tích</label>
                                             <input type="text" class="form-control" name="Size" id="Size" placeholder="sq ft">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="Sale-Rent-Price">Sale or Rent Price*</label>
+                                            <label for="Sale-Rent-Price">Giá*</label>
                                             <input type="text" class="form-control" name="Sale-Rent-Price" id="Sale-Rent-Price" required="">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
-                                    <div class="col-xs-12 col-sm-4 col-md-4">
-                                        <div class="form-group">
-                                            <label for="Before-Price-Label">Before Price Label</label>
-                                            <input type="text" class="form-control" name="Before-Price-Label" id="Before-Price-Label" placeholder="ex: start from">
-                                        </div>
-                                    </div>
+                                  
+                                    <!-- .col-md-4 end -->
+                                  
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="After-Price-Label">After Price Label</label>
-                                            <input type="text" class="form-control" name="After-Price-Label" id="After-Price-Label" placeholder="ex: monthly">
-                                        </div>
-                                    </div>
-                                    <!-- .col-md-4 end -->
-                                    <div class="col-xs-12 col-sm-4 col-md-4">
-                                        <div class="form-group">
-                                            <label for="Property-ID">Property ID*</label>
+                                            <label for="Property-ID">ID Phòng*</label>
                                             <input type="text" class="form-control" name="Property-ID" id="Property-ID">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="Video-URL">Video URL</label>
+                                            <label for="Video-URL">Hình ảnh</label>
                                             <input type="text" class="form-control" name="Video-URL" id="Video-URL" placeholder="Youtube, Vimeo, Dailymotion, etc..">
                                         </div>
                                     </div>
@@ -451,7 +439,7 @@
                             <div class="form-box">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <h4 class="form--title">Property Features</h4>
+                                        <h4 class="form--title">Các tính năng</h4>
                                     </div>
                                     <!-- .col-md-12 end -->
                                     <div class="col-xs-12 col-sm-6 col-md-3">
@@ -638,19 +626,19 @@
                             <div class="form-box">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12">
-                                        <h4 class="form--title">Property Location</h4>
+                                        <h4 class="form--title">Vị trí chổ ở</h4>
                                     </div>
                                     <!-- .col-md-12 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="address">Address*</label>
+                                            <label for="address">Địa chỉ*</label>
                                             <input type="text" class="form-control" name="address" id="address" placeholder="Enter your property address" required="">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
-                                    <div class="col-xs-12 col-sm-4 col-md-4">
+                                   <!-- <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="select-country">Country</label>
+                                            <label for="select-country">Thành phố</label>
                                             <div class="select--box">
                                                 <i class="fa fa-angle-down"></i>
                                                 <select id="select-country">
@@ -659,35 +647,35 @@
                                          </select>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="city">City</label>
+                                            <label for="city">Thành phố</label>
                                             <input class="form-control" name="city" id="city">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="state">State</label>
+                                            <label for="state">Quận</label>
                                             <input type="text" class="form-control" name="state" id="state">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="Zip/Postal-code">Zip/Postal Code</label>
+                                            <label for="Zip/Postal-code">Huyện</label>
                                             <input type="text" class="form-control" name="Zip/Postal-code" id="Zip/Postal-code">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
-                                    <div class="col-xs-12 col-sm-4 col-md-4">
+                                   <!-- <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
                                             <label for="neighborhood">Neighborhood</label>
                                             <input type="text" class="form-control" name="neighborhood" id="neighborhood">
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div id="googleMap" style="width: 100%; height: 380px; position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div class="gm-err-container"><div class="gm-err-content"><div class="gm-err-icon"><img src="http://maps.gstatic.com/mapfiles/api-3/image/icon_error.png" draggable="false" style="user-select: none;"></div><div class="gm-err-title">Oops! Something went wrong.</div><div class="gm-err-message">This page didn't load Google Maps correctly. See the JavaScript console for technical details.</div></div></div></div></div>
@@ -697,7 +685,7 @@
                                 <!-- .row end -->
                             </div>
                             <!-- .form-box end -->
-                            <input type="submit" value="Save Edits" name="submit" class="btn btn--primary">
+                            <input type="submit" value="Lưu" name="submit" class="btn btn--primary">
                         </form>
                     </div>
                     <!-- .col-md-12 end -->
@@ -729,7 +717,7 @@
         <footer id="footer" class="footer footer-1 bg-white">
             <!-- Widget Section
 	============================================= -->
-            <div class="footer-widget">
+          <!--  <div class="footer-widget">
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-6 col-md-3 widget--about">
@@ -747,7 +735,7 @@
                             </div>
                         </div>
                         <!-- .col-md-2 end -->
-                        <div class="col-xs-12 col-sm-3 col-md-2 col-md-offset-1 widget--links">
+                       <!-- <div class="col-xs-12 col-sm-3 col-md-2 col-md-offset-1 widget--links">
                             <div class="widget--title">
                                 <h5>Company</h5>
                             </div>
@@ -762,7 +750,7 @@
                             </div>
                         </div>
                         <!-- .col-md-2 end -->
-                        <div class="col-xs-12 col-sm-3 col-md-2 widget--links">
+                       <!-- <div class="col-xs-12 col-sm-3 col-md-2 widget--links">
                             <div class="widget--title">
                                 <h5>Learn More</h5>
                             </div>
@@ -776,7 +764,7 @@
                             </div>
                         </div>
                         <!-- .col-md-2 end -->
-                        <div class="col-xs-12 col-sm-12 col-md-4 widget--newsletter">
+                       <!-- <div class="col-xs-12 col-sm-12 col-md-4 widget--newsletter">
                             <div class="widget--title">
                                 <h5>newsletter</h5>
                             </div>
@@ -795,10 +783,10 @@
                         </div>
                         <!-- .col-md-4 end -->
 
-                    </div>
+                  <!--  </div>
                 </div>
                 <!-- .container end -->
-            </div>
+           <!-- </div>
             <!-- .footer-widget end -->
 
             <!-- Copyrights
