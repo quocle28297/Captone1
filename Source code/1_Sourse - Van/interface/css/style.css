@@ -211,7 +211,12 @@ h2 {
 
 .h3,
 h3 {
-	font-size: 38px;
+	/* font-size: 38px; */
+	font-size: 30px;
+	font-weight: 500;
+	line-height: 38px;
+	text-transform: capitalize;
+	margin-bottom: 9px;
 }
 
 .h4,
@@ -416,7 +421,7 @@ ul {
 
 section {
 	padding-top: 100px;
-	padding-bottom: 100px;
+	padding-bottom: 2px;
 	overflow: hidden;
 }
 
@@ -2851,6 +2856,7 @@ table tbody tr td {
 	font-size: 30px;
 	line-height: 1;
 	margin-bottom: 20px;
+	padding-top: 14px;
 }
 
 .heading-3 .heading--title {
@@ -9046,4 +9052,20 @@ img#thumb{
 }
 img#propertyImg{
 	height: 388.39px;
+}
+.report{
+    padding-left: 103px;
+}
+.baocao1{
+    float: left;
+    padding-right: 15px;
+}
+.baocao2{
+    float: left;
+    padding-right: 15px;
+}
+.baocao3{
+}
+.submit{
+	padding-top: 10px;
 }
