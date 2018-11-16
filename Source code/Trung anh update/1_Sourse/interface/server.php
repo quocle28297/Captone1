@@ -210,20 +210,19 @@ if (isset($_POST['save'])) {
        }
 
      }
-
+      
    }
  }
- if($count ==1)
+ if($count == 1)
  {
   header('Location: management-zone.php?error-image');
-  
-
 }
-if($count ==2)
+if($count == 2)
 {
   header('Location: management-zone.php?add-room-success');
   
 }
+
 }
 //end create room
 // create zone
@@ -467,20 +466,20 @@ if(isset($_POST['save-edit-room']))
         }
         if(!empty($errorMsg)){
           header('Location: management-zone.php?message-editroom');        }
-        else
-        {
-         array_push($errors, 'file được chọn không phải ảnh hoặc ảnh quá lớn bạn lui  lòng vào phần cập nhập để cập nhập lại ảnh xin cảm ơn!!');
+          else
+          {
+           array_push($errors, 'file được chọn không phải ảnh hoặc ảnh quá lớn bạn lui  lòng vào phần cập nhập để cập nhập lại ảnh xin cảm ơn!!');
+         }
+
        }
-
      }
-   }
 
-}
-if($count ==1 )
-{
-  header('Location: management-zone.php?message-editroom');
-  
-}
+   }
+   if($count ==1 )
+   {
+    header('Location: management-zone.php?message-editroom');
+
+  }
 }
 
 ?>

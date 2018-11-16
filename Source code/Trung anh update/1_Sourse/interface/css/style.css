@@ -2386,7 +2386,8 @@ button.btn {
     	border: none;
     	text-transform: uppercase;
     	padding: 0;
-    	width: 33px;
+    	min-width: 33px;
+    	width:auto;
     	height: 33px;
     	line-height: 33px;
     	text-align: center;
@@ -2800,10 +2801,20 @@ button.btn {
     	font-weight: 600;
     	text-transform: capitalize;
     	color: #282828;
-    	line-height: 30px !important;
+    	/*//line-height: 30px !important;*/
     	border-bottom-width: 0 !important;
     	border-color: #eee;
     	padding: 0;
+    }
+     table  tfoot tr th {
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: capitalize;
+        color: #282828;
+        /*//line-height: 30px !important;*/
+        border-bottom-width: 0 !important;
+        border-color: #eee;
+        padding: 0;
     }
 
     table tbody tr td {

@@ -49,261 +49,8 @@ if (!isset($_SESSION['ID'])){
     .gm-style img { max-width: none; }</style><script type="text/javascript" charset="UTF-8" src="http://maps.google.com/maps-api-v3/api/js/34/14/onion.js"></script><script type="text/javascript" charset="UTF-8" src="http://maps.google.com/maps-api-v3/api/js/34/14/stats.js"></script></head>
 
     <body>
-    <!-- Document Wrapper
-     ============================================= -->
-     <div id="wrapper" class="wrapper clearfix">
-        <header id="navbar-spy" class="header header-1 header-transparent header-fixed">
-            <nav id="primary-menu" class="navbar navbar-fixed-top affix">
-                <div class="container-fluid">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="logo" href="index.html">
-                         <img class="logo-light" src="image/logo-light.png" alt="Land Logo">
-                         <img class="logo-dark" src="image/logo-dark.png" alt="Land Logo">
-                     </a>
-                 </div>
-
-                 <!-- Collect the nav links, forms, and other content for toggling -->
-                 <div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
-                    <ul class="nav navbar-nav nav-pos-center navbar-left">
-                        <!-- Home Menu -->
-                        <li class="has-dropdown active">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">home</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="index.html">home search</a></li>
-                                <li><a href="home-map.html">home map</a></li>
-                                <li><a href="home-property.html">home property</a></li>
-                                <li><a href="home-splash.html">home splash</a></li>
-                            </ul>
-                        </li>
-                        <!-- li end -->
-
-                        <!-- Pages Menu-->
-                        <li class="has-dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Pages</a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-submenu">
-                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">agents</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="agents.html">All Agents</a>
-                                        </li>
-                                        <li>
-                                            <a href="agent-profile.html">agent profile</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">agencies</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="agency-list.html">all agencies</a>
-                                        </li>
-                                        <li>
-                                            <a href="agency-profile.html">agency profile</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="blog.html">blog Grid</a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-sidebar-right.html">blog Grid Right </a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-sidebar-left.html">blog Grid Left </a>
-                                        </li>
-                                        <li>
-                                            <a href="blog-single.html">blog single</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a href="page-about.html">page about</a></li>
-                                <li><a href="page-contact.html">page contact</a></li>
-                                <li><a href="page-faq.html">page FAQ</a></li>
-                                <li><a href="page-404.html">page 404</a></li>
-                            </ul>
-                        </li>
-                        <!-- li end -->
-
-                        <!-- Profile Menu-->
-                        <li class="has-dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Profile</a>
-                            <ul class="dropdown-menu">
-                                <li><a href="user-profile.html">user profile</a></li>
-                                <li><a href="social-profile.html">social profile</a></li>
-                                <li><a href="my-properties.html">my properties</a></li>
-                                <li><a href="favourite-properties.html">favourite properties</a></li>
-                                <li><a href="add-property.php">add property</a></li>
-                                <li><a href="home-map.php?logout='1'"> Thoát </a></li>
-                            </ul>
-                        </li>
-                        <!-- li end -->
-
-                        <!-- Properties Menu-->
-                        <li class="has-dropdown">
-                            <a href="#" data-toggle="dropdown" class="dropdown-toggle menu-item">Properties</a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown-submenu">
-                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Properties grid</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="properties-grid.html">properties grid</a>
-                                        </li>
-                                        <li>
-                                            <a href="properties-grid-split.html">properties grid split</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">properties list</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="properties-list.html">properties list</a>
-                                        </li>
-                                        <li>
-                                            <a href="properties-list-split.html">properties list split</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown-submenu">
-                                    <a href="#" data-toggle="dropdown" class="dropdown-toggle">properties single</a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="property-single-gallery.html">single gallery</a>
-                                        </li>
-                                        <li>
-                                            <a href="property-single-slider.html">single slider</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <!-- li end -->
-
-                        <li><a href="page-contact.html">contact</a></li>
-                    </ul>
-                    <!-- Module Signup  -->
-                    <div class="module module-login pull-left">
-                        <?php  if (!isset($_SESSION['USERS_NAME'])&&!isset($_SESSION['userData'])) : ?>
-                        <a class="btn-popup" data-toggle="modal" data-target="#signupModule">Login</a>
-                    <?php endif ?>
-
-                    <?php  if (isset($_SESSION['userData'])) : ?>
-                        <a class="btn-popup" data-toggle="modal" data-target="#frofile">Welcome <strong> 
-                            <?php echo $_SESSION['userData']['first_name']." ".$_SESSION['userData']['last_name'];
-                            ?></strong></a>
-                        <?php endif ?>
-
-                        <?php  if (isset($_SESSION['USERS_NAME'])) : ?>
-                            <a class="btn-popup" data-toggle="modal" data-target="#frofile">Welcome <strong> 
-                                <?php echo $_SESSION['USERS_NAME'];
-                                ?></strong></a>
-                            <?php endif ?>
-                            <div class="modal register-login-modal fade" tabindex="-1" role="dialog" id="signupModule">
-                                <div class="modal-dialog modal-lg" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-body">
-                                            <div class="row">
-
-                                                <!-- Nav tabs -->
-                                                <ul class="nav nav-tabs">
-                                                    <li class="active"><a href="#login" data-toggle="tab">login</a>
-                                                    </li>
-                                                    <li><a href="#signup" data-toggle="tab">signup</a>
-                                                    </li>
-                                                </ul>
-                                                <!-- Tab panes -->
-                                                <div class="tab-content">
-                                                    <div class="tab-pane fade in active" id="login">
-                                                        <div class="signup-form-container text-center">
-                                                            <form class="mb-0">
-                                                                <a href="#" class="btn btn--facebook btn--block"><i class="fa fa-facebook-square"></i>Login with Facebook</a>
-                                                                <div class="or-text">
-                                                                    <span>or</span>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <input type="email" class="form-control" name="login-email" id="login-email" placeholder="Email Address">
-                                                                </div>
-                                                                <!-- .form-group end -->
-                                                                <div class="form-group">
-                                                                    <input type="password" class="form-control" name="login-password" id="login-password" placeholder="Password">
-                                                                </div>
-                                                                <!-- .form-group end -->
-                                                                <div class="input-checkbox">
-                                                                    <label class="label-checkbox">
-                                                                        <span>Remember Me</span>
-                                                                        <input type="checkbox">
-                                                                        <span class="check-indicator"></span>
-                                                                    </label>
-                                                                </div>
-                                                                <input type="submit" class="btn btn--primary btn--block" value="Sign In">
-                                                                <a href="#" class="forget-password">Forget your password?</a>
-                                                            </form>
-                                                            <!-- form  end -->
-                                                        </div>
-                                                        <!-- .signup-form end -->
-                                                    </div>
-                                                    <div class="tab-pane" id="signup">
-                                                        <form class="mb-0">
-                                                            <a href="#" class="btn btn--facebook btn--block"><i class="fa fa-facebook-square"></i>Register with Facebook</a>
-                                                            <div class="or-text">
-                                                                <span>or</span>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <input type="text" class="form-control" name="full-name" id="full-name" placeholder="Full Name">
-                                                            </div>
-                                                            <!-- .form-group end -->
-                                                            <div class="form-group">
-                                                                <input type="email" class="form-control" name="register-email" id="register-email" placeholder="Email Address">
-                                                            </div>
-                                                            <!-- .form-group end -->
-                                                            <div class="form-group">
-                                                                <input type="password" class="form-control" name="register-password" id="register-password" placeholder="Password">
-                                                            </div>
-                                                            <!-- .form-group end -->
-                                                            <div class="input-checkbox">
-                                                                <label class="label-checkbox">
-                                                                    <span>I agree with all <a href="#">Terms &amp; Conditions</a></span>
-                                                                    <input type="checkbox">
-                                                                    <span class="check-indicator"></span>
-                                                                </label>
-                                                            </div>
-                                                            <input type="submit" class="btn btn--primary btn--block" value="Register">
-                                                        </form>
-                                                        <!-- form  end -->
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.modal-content -->
-                                    </div>
-                                    <!-- /.modal-dialog -->
-                                </div>
-                                <!-- /.modal -->
-                            </div>
-                        </div>
-                        <!-- Module Consultation  -->
-                        <div class="module module-property pull-left">
-                            <a href="add-property.php" target="_blank" class="btn"><i class="fa fa-plus"></i> add property</a>
-                        </div>
-                    </div>
-                    <!-- /.navbar-collapse -->
-                </div>
-                <!-- /.container-fluid -->
-            </nav>
-
-        </header>
+        
+        <?php require_once('head.html') ?>
 
         <!-- Page Title #1
             ============================================ -->
@@ -380,11 +127,11 @@ if (!isset($_SESSION['ID'])){
                                         </div>
                                         <!-- .col-md-4 end -->
                                         <div class="col-xs-12 col-sm-4 col-md-4">
-                                           <label for="address">Quận/Huyện</label>
-                                           <div class="select--box">
+                                         <label for="address">Quận/Huyện</label>
+                                         <div class="select--box">
                                             <i class="fa fa-angle-down"></i>
                                             <select class="form-control" name="select-District" id="select-District">
-                                               
+                                             
                                                 <?php echo fill_District($conn); ?>
                                             </select>
                                         </div>
@@ -394,34 +141,34 @@ if (!isset($_SESSION['ID'])){
                                     </div>
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
-                                       <label for="address">Phường/Xã</label>
-                                       <div class="select--box">
+                                     <label for="address">Phường/Xã</label>
+                                     <div class="select--box">
                                         <i class="fa fa-angle-down"></i>
                                         <select class="form-control" name="select-Ward" id="select-Ward">
-                                           
+                                         
                                             <?php echo fill_Ward($conn); ?>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
-                                   <hr>
-                                   <div id="googleMap" style="width: 100%; height: 380px; position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div class="gm-err-container"><div class="gm-err-content"><div class="gm-err-icon"><img src="http://maps.gstatic.com/mapfiles/api-3/image/icon_error.png" draggable="false" style="user-select: none;"></div><div class="gm-err-title">Oops! Something went wrong.</div><div class="gm-err-message">This page didn't load Google Maps correctly. See the JavaScript console for technical details.</div></div></div></div></div>
-                               </div>
-                               <!-- .col-md-12 end -->
-                           </div>
-                           <!-- .row end -->
-                       </div>
-                       <!-- .form-box end -->
-                       <input type="submit" id="create-zone" value="save" name="save-zone"  class="btn btn--primary">
-                   </form>
-               </div>
-               <!-- .col-md-12 end -->
-           </div>
-           <!-- .row end -->
-       </div>
-   </section>
-   <!-- #social-profile  end -->
+                                 <hr>
+                                 <div id="googleMap" style="width: 100%; height: 380px; position: relative; overflow: hidden;"><div style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);"><div class="gm-err-container"><div class="gm-err-content"><div class="gm-err-icon"><img src="http://maps.gstatic.com/mapfiles/api-3/image/icon_error.png" draggable="false" style="user-select: none;"></div><div class="gm-err-title">Oops! Something went wrong.</div><div class="gm-err-message">This page didn't load Google Maps correctly. See the JavaScript console for technical details.</div></div></div></div></div>
+                             </div>
+                             <!-- .col-md-12 end -->
+                         </div>
+                         <!-- .row end -->
+                     </div>
+                     <!-- .form-box end -->
+                     <input type="submit" id="create-zone" value="save" name="save-zone"  class="btn btn--primary">
+                 </form>
+             </div>
+             <!-- .col-md-12 end -->
+         </div>
+         <!-- .row end -->
+     </div>
+ </section>
+ <!-- #social-profile  end -->
 
         <!-- cta #1
             ============================================= -->
@@ -444,7 +191,7 @@ if (!isset($_SESSION['ID'])){
             ============================================= -->
             <footer id="footer" class="footer footer-1 bg-white">
             <!-- Widget Section
-             ============================================= -->
+               ============================================= -->
           <!--  <div class="footer-widget">
                 <div class="container">
                     <div class="row">
@@ -518,8 +265,8 @@ if (!isset($_SESSION['ID'])){
             <!-- .footer-widget end -->
 
             <!-- Copyrights
-             ============================================= -->
-             <div class="footer--copyright text-center">
+               ============================================= -->
+               <div class="footer--copyright text-center">
                 <div class="container">
                     <div class="row footer--bar">
                         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -562,19 +309,19 @@ if (!isset($_SESSION['ID'])){
         //     }]
         // });
         function initMap() {
-         map = new google.maps.Map(document.getElementById('googleMap'), {
-          center: new google.maps.LatLng(16.055412, 108.202587),
-          zoom: 15
-      });
-     }
- </script>
- <script src="assets/js/map-custom.js"></script>
+           map = new google.maps.Map(document.getElementById('googleMap'), {
+              center: new google.maps.LatLng(16.055412, 108.202587),
+              zoom: 15
+          });
+       }
+   </script>
+   <script src="assets/js/map-custom.js"></script>
 
- <a href="facebook.com"></a>
+   <a href="facebook.com"></a>
 
- <div style="position: absolute; left: 0px; top: -2px; height: 1px; overflow: hidden; visibility: hidden; width: 1px;"><span style="position: absolute; font-size: 300px; width: auto; height: auto; margin: 0px; padding: 0px; font-family: Roboto, Arial, sans-serif;">BESbswy</span></div></body></html>
- <script >
-     function format_curency(a) {
+   <div style="position: absolute; left: 0px; top: -2px; height: 1px; overflow: hidden; visibility: hidden; width: 1px;"><span style="position: absolute; font-size: 300px; width: auto; height: auto; margin: 0px; padding: 0px; font-family: Roboto, Arial, sans-serif;">BESbswy</span></div></body></html>
+   <script >
+       function format_curency(a) {
         a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
     }
 </script>
@@ -582,29 +329,29 @@ if (!isset($_SESSION['ID'])){
     //load quan huyen
     $(document).ready(function(){  
       $('#select-Province').change(function(){  
-       var PROVINCE_ID = $(this).val();  
-       $.ajax({  
-        url:"District.php",  
-        method:"POST",  
-        data:{PROVINCE_ID:PROVINCE_ID},  
-        success:function(data){  
-         $('#select-District').html(data);  
-     }  
- });  
-   });  
+         var PROVINCE_ID = $(this).val();  
+         $.ajax({  
+            url:"District.php",  
+            method:"POST",  
+            data:{PROVINCE_ID:PROVINCE_ID},  
+            success:function(data){  
+               $('#select-District').html(data);  
+           }  
+       });  
+     });  
   }); 
   //load phuong xa
   $(document).ready(function(){  
       $('#select-District').change(function(){  
-       var DISTRICT_ID = $(this).val();  
-       $.ajax({  
-        url:"Ward.php",  
-        method:"POST",  
-        data:{DISTRICT_ID:DISTRICT_ID},  
-        success:function(data){  
-         $('#select-Ward').html(data);  
-     }  
- });  
-   });  
+         var DISTRICT_ID = $(this).val();  
+         $.ajax({  
+            url:"Ward.php",  
+            method:"POST",  
+            data:{DISTRICT_ID:DISTRICT_ID},  
+            success:function(data){  
+               $('#select-Ward').html(data);  
+           }  
+       });  
+     });  
   });   
 </script>  

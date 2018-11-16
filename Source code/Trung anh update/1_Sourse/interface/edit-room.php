@@ -203,12 +203,12 @@ if (!isset($_SESSION['ID'])){
                         <?php endif ?>
 
                         <?php  if (isset($_SESSION['userData'])) : ?>
-                           <a class="btn-popup" data-toggle="modal" data-target="#frofile">Welcome <strong> 
-                               <?php echo $_SESSION['userData']['first_name']." ".$_SESSION['userData']['last_name'];
-                               ?></strong></a>
-                           <?php endif ?>
+                         <a class="btn-popup" data-toggle="modal" data-target="#frofile">Welcome <strong> 
+                             <?php echo $_SESSION['userData']['first_name']." ".$_SESSION['userData']['last_name'];
+                             ?></strong></a>
+                         <?php endif ?>
 
-                           <?php  if (isset($_SESSION['USERS_NAME'])) : ?>
+                         <?php  if (isset($_SESSION['USERS_NAME'])) : ?>
                             <a class="btn-popup" data-toggle="modal" data-target="#frofile">Welcome <strong> 
                                 <?php echo $_SESSION['USERS_NAME'];
                                 ?></strong></a>
@@ -469,166 +469,45 @@ if (!isset($_SESSION['ID'])){
 
 
         <!-- .form-box end -->
-        <input type="submit" id="save-edit-room" value="lưu thay đổi" name="save-edit-room"  class="btn btn--primary">
+        <div class="container">
+            <input type="submit" id="save-edit-room" value="lưu thay đổi" name="save-edit-room"  class="btn btn--primary">
+        </div>
     </form>
 </div>
 <!-- .col-md-12 end -->
 </div>
 <!-- .row end -->
 </div>
-</section>
-<!-- #social-profile  end -->
 
-        <!-- cta #1
-            ============================================= -->
-            <section id="cta" class="cta cta-1 text-center bg-overlay bg-overlay-dark pt-90 bg-section" style="background-image: url(&quot;assets/images/cta/bg-1.jpg&quot;);">
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
-                            <h3>Join our professional team &amp; agents to start selling your house</h3>
-                            <a href="#" class="btn btn--primary">Contact</a>
-                        </div>
-                        <!-- .col-md-6 -->
-                    </div>
-                    <!-- .row -->
-                </div>
-                <!-- .container -->
-            </section>
-            <!-- #cta1 end -->
-        <!-- Footer #1
-            ============================================= -->
-            <footer id="footer" class="footer footer-1 bg-white">
-        <!-- Widget Section
-            ============================================= -->
-        <!--  <div class="footer-widget">
-        <div class="container">
-        <div class="row">
-        <div class="col-xs-12 col-sm-6 col-md-3 widget--about">
-        <div class="widget--content">
-        <div class="footer--logo">
-        <img src="image/logo-dark2.png" alt="logo">
-        </div>
-        <p>86 Petersham town, New South Wales Wardll Street, Australia PA 6550</p>
-        <div class="footer--contact">
-        <ul class="list-unstyled mb-0">
-        <li>+61 525 240 310</li>
-        <li><a href="mailto:contact@land.com">contact@land.com</a></li>
-        </ul>
-        </div>
-        </div>
-        </div>
-        <!-- .col-md-2 end -->
-        <!-- <div class="col-xs-12 col-sm-3 col-md-2 col-md-offset-1 widget--links">
-        <div class="widget--title">
-        <h5>Company</h5>
-        </div>
-        <div class="widget--content">
-        <ul class="list-unstyled mb-0">
-        <li><a href="#">About us</a></li>
-        <li><a href="#">Career</a></li>
-        <li><a href="#">Services</a></li>
-        <li><a href="#">Properties</a></li>
-        <li><a href="#">Contact</a></li>
-        </ul>
-        </div>
-        </div>
-        <!-- .col-md-2 end -->
-        <!-- <div class="col-xs-12 col-sm-3 col-md-2 widget--links">
-        <div class="widget--title">
-        <h5>Learn More</h5>
-        </div>
-        <div class="widget--content">
-        <ul class="list-unstyled mb-0">
-        <li><a href="#">Privacy</a></li>
-        <li><a href="#">Terms &amp; Conditions</a></li>
-        <li><a href="#">Account</a></li>
-        <li><a href="#">FAQ</a></li>
-        </ul>
-        </div>
-        </div>
-        <!-- .col-md-2 end -->
-        <!-- <div class="col-xs-12 col-sm-12 col-md-4 widget--newsletter">
-        <div class="widget--title">
-        <h5>newsletter</h5>
-        </div>
-        <div class="widget--content">
-        <form class="newsletter--form mb-40">
-        <input type="email" class="form-control" id="newsletter-email" placeholder="Email Address">
-        <button type="submit"><i class="fa fa-arrow-right"></i></button>
-        </form>
-        <h6>Get In Touch</h6>
-        <div class="social-icons">
-        <a href="#"><i class="fa fa-twitter"></i></a>
-        <a href="#"><i class="fa fa-facebook"></i></a>
-        <a href="#"><i class="fa fa-vimeo"></i></a>
-        </div>
-        </div>
-        </div>
-        <!-- .col-md-4 end -->
-
-        <!--  </div>
-        </div>
-        <!-- .container end -->
-        <!-- </div>
-            <!-- .footer-widget end -->
-
-        <!-- Copyrights
-            ============================================= -->
-            <div class="footer--copyright text-center">
-                <div class="container">
-                    <div class="row footer--bar">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <span>© 2018 bule team.</span>
-                        </div>
-
-                    </div>
-                    <!-- .row end -->
-                </div>
-                <!-- .container end -->
-            </div>
-            <!-- .footer-copyright end -->
-        </footer>
-    </div>
-    <!-- #wrapper end -->
+<!-- .footer-copyright end -->
+</footer>
+</div>
+<!-- #wrapper end -->
 
         <!-- Footer Scripts
             ============================================= -->
-            <script src="js/jquery-2.2.4.min.js"></script>
-            <script src="js/plugins.js"></script>
-            <script src="js/dropzone.js"></script>
-            <script src="js/functions.js"></script>
-            <script src="js/jquery.gmap.min.js"></script>
-            <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdd5CkT5Or59lPzUHISxleG_XO96X3-S8&callback=initMap">
-        </script> 
-        <script>
-        // $('#googleMap').gMap({
-        //     address: "121 King St,Melbourne, Australia",
-        //     zoom: 12,
-        //     maptype: 'ROADMAP',
-        //     markers: [{
-        //         address: "Melbourne, Australia",
-        //         maptype: 'ROADMAP',
-        //         icon: {
-        //             image: "assets/images/gmap/marker1.png",
-        //             iconsize: [52, 75],
-        //             iconanchor: [52, 75]
-        //         }
-        //     }]
-        // });
-        function initMap() {
-        	map = new google.maps.Map(document.getElementById('googleMap'), {
-        		center: new google.maps.LatLng(16.055412, 108.202587),
-        		zoom: 15
-        	});
-        }
-    </script>
-    <script src="assets/js/map-custom.js"></script>
 
-    <a href="facebook.com"></a>
+            <div class="container">
+               <div class="footer--copyright text-center">
+                <div class="row footer--bar">
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <span>© 2018 bule team.</span>
+                    </div>
 
-    <div style="position: absolute; left: 0px; top: -2px; height: 1px; overflow: hidden; visibility: hidden; width: 1px;"><span style="position: absolute; font-size: 300px; width: auto; height: auto; margin: 0px; padding: 0px; font-family: Roboto, Arial, sans-serif;">BESbswy</span></div></body></html>
+                </div>
+                <!-- .row end -->
+            </div>
+            <!-- .container end -->
+        </div>
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/plugins.js"></script>
+        <script src="js/dropzone.js"></script>
+        <script src="js/functions.js"></script>
+        <script src="js/jquery.gmap.min.js"></script>
+
+    </body>
+    </html>
     <script >
         function format_curency(a) {
           a.value = a.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
@@ -663,34 +542,34 @@ if (!isset($_SESSION['ID'])){
               var image_name = $('#image').val();
               if(image_name == '')
               {
-                 alert("Please Select Image");
-                 return false;
-             }
-             else
-             {
-                 var extension = $('#image').val().split('.').pop().toLowerCase();
-                 if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
-                 {
-                    alert("Invalid Image File");
-                    $('#image').val('');
-                    return false;
-                }
-                else
-                {
-                    $.ajax({
-                       url:"data.php",
-                       method:"POST",
-                       data:new FormData(this),
-                       contentType:false,
-                       processData:false,
-                       success:function(data)
-                       {
-                          location.reload();
-                      }
-                  });
-                }
+               alert("Please Select Image");
+               return false;
+           }
+           else
+           {
+               var extension = $('#image').val().split('.').pop().toLowerCase();
+               if(jQuery.inArray(extension, ['gif','png','jpg','jpeg']) == -1)
+               {
+                alert("Invalid Image File");
+                $('#image').val('');
+                return false;
             }
-        });
+            else
+            {
+                $.ajax({
+                 url:"data.php",
+                 method:"POST",
+                 data:new FormData(this),
+                 contentType:false,
+                 processData:false,
+                 success:function(data)
+                 {
+                  location.reload();
+              }
+          });
+            }
+        }
+    });
           $(document).on('click', '.edit', function(){
               $('#image_id').val($(this).attr("id"));
               $('#action').val("update");

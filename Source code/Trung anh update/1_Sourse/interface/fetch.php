@@ -247,11 +247,12 @@ function load_img_room()
 		$result = $statement -> fetchall();
 		$number_of_rows=$statement -> rowCount();
 		$output='';
-		$output .='
-		<table class = "table table-bordered table-striped">
-		';
+		
 		if($number_of_rows > 0)
 		{
+			$output .='
+			<table class = "table table-bordered table-striped">
+			';
 			if($number_of_rows > 0)
 			{
 				$count =0;
@@ -298,4 +299,180 @@ function load_img_room()
 	}
 }
 
+function load_table_room2()
+{
+	
+	if($_POST && isset($_POST['detail-zone'])){ 
+		$detail_zone = $_POST['detail-zone'];
+
+		$connect = mysqli_connect("localhost", "root", "", "qlphongtro");  
+		$query ="SELECT * FROM room WHERE ROOM_ZONE_ID = '$detail_zone'" ; 
+		mysqli_set_charset($connect, 'UTF8'); 
+		$result = mysqli_query($connect, $query);
+		$output='';
+		$output .='
+		<table id="room_data" class = "table table-bordered table-striped">  
+		<thead>  
+		<tr>
+		<th>Chi tiết</th>
+		<th>Sr. No</th>
+		<th>ID</th>
+		<th>Tên phòng</th>
+		<th>Giá</th>
+		<th>diện tích</th>
+		<th>Cập nhật</th>
+		<th>Xóa</th>
+		<th>Thạng thái</th>
+		</tr>
+		</thead>  
+		';
+
+		$count =0;
+		while($row = mysqli_fetch_array($result) )
+		{
+			$a= roomID($row["ROOM_TYPE_ID"]);
+			$count ++;
+
+			$output .='
+
+			<tr>
+			<td><form method="POST"
+			action="#">
+			<input 
+			type="submit" 
+			id="'.$row["ROOM_ID"].'"
+			value="'.$row["ROOM_ID"].'" 
+			name="detail-room" 
+			class="alert-box information">
+			</form></td>
+
+			<td>'.$count.'</td>
+			<td>'.$row["ROOM_ID"].'</td>
+			<td>'.$row["ROOM_NAME"].'</td>
+			<td>'.$row["ROOM_PRICE"].'</td>
+			<td>'.$row["ROOM_ACREAGE"].'</td>
+
+			<td><form method="post"
+			action="edit-room.php">
+			<input 
+			type="submit" 
+			id="'.$row["ROOM_ID"].'" 
+			value="'.$row["ROOM_ID"].'" 
+			name="Edit-room"  
+			class="alert-box edit">
+			</form></td>
+
+			<td><button type="button"
+			class="alert-box delete"
+			id_edit_room="'.$row["ROOM_ID"].'" 
+			edit_name="'.$row["ROOM_NAME"].'"
+			value="delete"
+			>
+
+			</button></td>
+			<td>'.$a.'</td>
+
+			</tr>
+			';
+
+		}
+
+		$output .='
+		<tfoot>
+		<tr>
+		<th>Chi tiết</th>
+		<th>Sr. No</th>
+		<th>ID</th>
+		<th>Tên phòng</th>
+		<th>Giá</th>
+		<th>diện tích</th>
+		<th>Cập nhật</th>
+		<th>Xóa</th>
+		<th>Thạng thái</th>
+		</tr>
+		</tfoot>
+		</table>';
+		echo $output;
+	}
+}
+function load_table_zone2()
+{	
+	
+	$connect = mysqli_connect("localhost", "root", "", "qlphongtro");  
+	$query = "SELECT * FROM zone where ZONE_USER_ID ='".$_SESSION['ID']."'";
+	mysqli_set_charset($connect, 'UTF8');
+	$result = mysqli_query($connect, $query);
+	$output='';
+	$output .='
+	<table id="zone_data" class = "table table-bordered table-striped">  
+	<thead>  
+	<tr>
+	<th>Chi tiết</th>
+	<th>Sr. No</th>
+	<th>ID</th>
+	<th>Tên zone</th>
+	<th>Địa chỉ</th>
+	<th>Cập nhật</th>
+	<th>Xóa</th>
+	</tr>
+	<thead>  
+	';
+
+	$count =0;
+	while($row = mysqli_fetch_array($result))
+	{
+		$count ++;
+
+		$output .='
+
+		<tr>
+		<td><form method="POST"
+		action="management-room.php">
+		<input 
+		type="submit" 
+		id="'.$row["ZONE_ID"].'"
+		value="'.$row["ZONE_ID"].'" 
+		name="detail-zone" 
+		class="alert-box information">
+		</form></td>
+
+		<td>'.$count.'</td>
+		<td>'.$row["ZONE_ID"].'</td>
+		<td>'.$row["ZONE_NAME"].'</td>
+		<td>'.$row["ZONE_ADDRESS"].'</td>
+
+		<td><form method="POST" 
+		action="#"> 
+		<input 
+		type="submit" 
+		id="'.$row["ZONE_ID"].'" 
+		value="'.$row["ZONE_ID"].'" 
+		name="Edit-zone"  
+		class="alert-box edit">
+		</form></td>
+
+		<td><button type="button" 
+		class="alert-box delete" 
+		id_edit_zone="'.$row["ZONE_ID"].'" 
+		data-name="'.$row["ZONE_NAME"].'" >
+		</button></td>
+		</tr>
+		';
+	}
+
+	$output .='
+	<tfoot>
+	<tr>
+	<th>Chi tiết</th>
+	<th>Sr. No</th>
+	<th>ID</th>
+	<th>Tên zone</th>
+	<th>Địa chỉ</th>
+	<th>Cập nhật</th>
+	<th>Xóa</th>
+	</tr>
+	</tfoot>
+	</table>';
+	echo $output;
+}
 ?>
