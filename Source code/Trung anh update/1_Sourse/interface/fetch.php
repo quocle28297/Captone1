@@ -416,6 +416,7 @@ function load_table_zone2()
 	<th>Xóa</th>
 	</tr>
 	<thead>  
+	<tbody>
 	';
 
 	$count =0;
@@ -424,6 +425,7 @@ function load_table_zone2()
 		$count ++;
 
 		$output .='
+		
 
 		<tr>
 		<td><form method="POST"
@@ -457,10 +459,12 @@ function load_table_zone2()
 		data-name="'.$row["ZONE_NAME"].'" >
 		</button></td>
 		</tr>
+		
 		';
 	}
 
 	$output .='
+	</tbody>
 	<tfoot>
 	<tr>
 	<th>Chi tiết</th>

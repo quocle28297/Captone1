@@ -69,9 +69,11 @@ if (!isset($_SESSION['ID'])){
 </body>  
 </html>  
 <script>  
-   $(document).ready(function(){  
-      $('#room_data').DataTable();  
-  });  
+   $(document).ready(function() {
+    $('#room_data').DataTable( {
+        "pagingType": "full_numbers"
+    } );
+} );
      //click xoa
      $(document).on('click', '.delete', function(){
         var id_edit_room = $(this).attr("id_edit_room");
