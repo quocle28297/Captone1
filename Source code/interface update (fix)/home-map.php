@@ -156,7 +156,6 @@ $loginURL = $helper->getLoginUrl($redirectURL, $permissions);
                 }
             }
             $queryselect .= $queryfrom.$querywhere;
-            echo $queryselect;
             $result = mysqli_query($connection,$queryselect);
             if (!$result) {
                 die('Invalid query: ' . mysqli_error($connection));
@@ -179,7 +178,7 @@ $loginURL = $helper->getLoginUrl($redirectURL, $permissions);
                 }
             ?>
             <?php
-                if(isset($_GET['select-District'])&&!empty($_GET['select-Province'])) {
+                if(isset($_GET['select-District'])&&!empty($_GET['select-District'])) {
             ?>
                     $("#select-District option").filter(function() {
                         return this.text == <?php echo json_encode($row['DISTRICT_NAME']);?>; 
@@ -188,10 +187,10 @@ $loginURL = $helper->getLoginUrl($redirectURL, $permissions);
                 }
             ?>
             <?php
-                if(isset($_GET['select-Ward'])&&!empty($_GET['select-Province'])) {
+                if(isset($_GET['select-Ward'])&&!empty($_GET['select-Ward'])) {
             ?>
                     $("#select-Ward option").filter(function() {
-                        return this.text == <?php echo json_encode($row['DISTRICT_NAME']);?>; 
+                        return this.text == <?php echo json_encode($row['WARD_NAME']);?>; 
                     }).attr('selected', true);
             <?php
                 }
