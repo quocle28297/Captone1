@@ -93,7 +93,7 @@ if (isset($_POST['save'])) {
   $ROOM_STATUS_ID = mysqli_real_escape_string($db, $_POST['select-status']);
   $ROOM_ZONE_ID = mysqli_real_escape_string($db, $_POST['select-zone']);
   $ROOM_TYPE_ID = mysqli_real_escape_string($db, $_POST['select-type']);
-  $count =0;
+  $count ='false';
 
   if ($ROOM_TYPE_ID=="") {
     array_push($errors, "Bạn chưa chọn kiểu");
@@ -133,6 +133,9 @@ if (isset($_POST['save'])) {
   if(count(array_filter($_FILES['files']['name']))>5){
     array_push($errors, "Bạn  chọn nhiều  hơn 5 ảnh");
   }
+  if(count(array_filter($_FILES['files']['name']))<1){
+    array_push($errors, "Bạn  chưa chọn ảnh");
+  }
 
 
   if (count($errors) == 0) 
@@ -142,7 +145,7 @@ if (isset($_POST['save'])) {
     $results = mysqli_query($db, $query);
     if($results)
     {
-      $count ++;
+      $count ='true';
     }
     else
     {
@@ -190,41 +193,86 @@ if (isset($_POST['save'])) {
             $errorUpload = !empty($errorUpload)?'Upload Error: '.$errorUpload:'';
             $errorUploadType = !empty($errorUploadType)?'File Type Error: '.$errorUploadType:'';
             $errorMsg = !empty($errorUpload)?'<br/>'.$errorUpload.'<br/>'.$errorUploadType:'<br/>'.$errorUploadType;
+
           }
           else
           {
             array_push($errors, "Đã có lỗi xảy ra  khi  đưa ảnh  lên.!!");
+             $count='false';
+
           }
 
         }
         else
         {
-          array_push($errors, "Bạn chưa nhập ảnh !!");
+          array_push($errors, "lỗi hình ảnh !!");
+          $count='false';
+
         }
         if(!empty($errorMsg)){
-          $count++;
+          $count='true';
+          //array_push($errors, "aaa".$errorMsg);
         }
         else
         {
-         array_push($errors, 'file được chọn không phải ảnh hoặc ảnh quá lớn bạn lui  lòng vào phần cập nhập để cập nhập lại ảnh xin cảm ơn!!');
+         array_push($errors, 'file được chọn không phải ảnh hoặc ảnh quá lớn  !!');
+         $count='false';
        }
 
      }
-      
+
    }
  }
- if($count == 1)
+
+ //array_push($errors, $count);
+ if($count == 'true'&& count($errors) == 0)
  {
-  header('Location: management-zone.php?error-image');
-}
-if($count == 2)
-{
-  header('Location: management-zone.php?add-room-success');
-  
+   header('Location: management-zone.php?add-room-success');
+ }
+ if($count == 'false')
+ {
+   $query = "DELETE FROM `room` WHERE ROOM_ID='$ROOM_ID'";
+   if (mysqli_query($db, $query)) {
+    array_push($errors, "ok");
+  } else {
+    array_push($errors, "no". mysqli_error($db));
+  }
 }
 
 }
 //end create room
+//get
+function get_name_province($conn){
+  if(isset($_POST['select-Province']))
+  {
+    $query = "SELECT PROVINCE_NAME FROM PROVINCE WHERE PROVINCE_ID='".$_POST['select-Province']."'";
+    $result = mysqli_query($conn,$query);
+    $row = mysqli_fetch_array($result);
+    return $row[0];
+
+  }
+}
+function get_name_District($conn){
+  if(isset($_POST['select-District']))
+  {
+    $query = "SELECT DISTRICT_NAME FROM district WHERE DISTRICT_ID='".$_POST['select-District']."'";
+    $result = mysqli_query($conn,$query);
+    $row = mysqli_fetch_array($result);
+    return $row[0];
+
+  }
+}
+function get_name_Ward($conn){
+  if(isset($_POST['select-District']))
+  {
+    $query = "SELECT WARD_NAME FROM ward WHERE WARD_ID='".$_POST['select-Ward']."'";
+    $result = mysqli_query($conn,$query);
+    $row = mysqli_fetch_array($result);
+    return $row[0];
+
+  }
+}
+// get
 // create zone
 if (isset($_POST['save-zone'])) 
 {
@@ -233,6 +281,9 @@ if (isset($_POST['save-zone']))
   $ZONE_PROVINCE_ID=mysqli_real_escape_string($db,$_POST['select-Province']);
   $ZONE_DISTRICT_ID=mysqli_real_escape_string($db,$_POST['select-District']);
   $ZONE_WARD_ID=mysqli_real_escape_string($db,$_POST['select-Ward']);
+  $ZONE_PROVINCE_name=get_name_province($conn);
+  $ZONE_DISTRICT_name=get_name_District($conn);
+  $ZONE_WARD_name=get_name_Ward($conn);
 
 
   if (empty($ZONE_NAME)) {
@@ -250,31 +301,56 @@ if (isset($_POST['save-zone']))
   if ($ZONE_WARD_ID=='') {
     array_push($errors, "Bạn Chưa chọn Phường/Xã");
   }
+  $a=$ZONE_ADDRESS.'+'.$ZONE_WARD_name.'+'.$ZONE_DISTRICT_name.'+'.$ZONE_PROVINCE_name;
+  //array_push($errors, "$a");
+  $arr=getCoordinates($a);
+  $lat=$arr[0];
+  $lng=$arr[1];
+  if (empty($lat)||empty($lng)) {
+    array_push($errors, "Địa chỉ không tồn tại");
+  }
+
+  //array_push($errors, " $lat");
+  //array_push($errors, " $lng");
 
   $zone_ueser_ID=$_SESSION['ID'];
   if (count($errors) == 0) 
 
   {
     $query = "INSERT INTO `zone`
-    (`ZONE_USER_ID`, `ZONE_NAME`, `ZONE_ADDRESS`,  `ZONE_WARD_ID`, `ZONE_DISTRICT_ID`, `ZONE_PROVINCE_ID`)
+    (`ZONE_USER_ID`, `ZONE_NAME`, `ZONE_ADDRESS`,  `ZONE_WARD_ID`, `ZONE_DISTRICT_ID`, `ZONE_PROVINCE_ID`,`ZONE_LOGITUDE`,`ZONE_LATITUDE`)
     VALUES
-    ('$zone_ueser_ID',N'$ZONE_NAME',N'$ZONE_ADDRESS','$ZONE_WARD_ID','$ZONE_DISTRICT_ID','$ZONE_PROVINCE_ID')";
+    ('$zone_ueser_ID',N'$ZONE_NAME',N'$ZONE_ADDRESS','$ZONE_WARD_ID','$ZONE_DISTRICT_ID','$ZONE_PROVINCE_ID','$lng',' $lat')";
     $results = mysqli_query($db, $query);
     if($results)
     {
       array_push($statusMessage, "Bạn vừa thêm khu thành Công!!");
-      header('Location:management-zone.php?message-zone');
+      header('Location:management-zone.php? ');
     }
     else
     {
 
-      array_push($errors, "Bạn vừa thêm  khu thất  bại vui  lòng  nhập lại!!");
+      array_push($errors, "Bạn vừa thêm   khu thất  bại vui  lòng  nhập lại!!");
 
     }
   }
 
 }
 //end create zone
+// get kinh do vi do
+function getCoordinates($address){
+  $mapApiKey= 'AIzaSyBaEjohZpjSWkzIXQP0u01FZpZSe5Uxuhs';
+  $address = urlencode($address);
+  $url = "https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=" .$address ."&key=".$mapApiKey;
+  $response = file_get_contents($url);
+  $json = json_decode($response,true);
+  $lat = $json['results'][0]['geometry']['location']['lat'];
+  $lng = $json['results'][0]['geometry']['location']['lng'];
+
+  return array($lat, $lng);
+}
+// get kinh do vi do
+
 // notification success-zone
 if(isset($_GET['message-zone']))
 {
