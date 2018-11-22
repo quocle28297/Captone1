@@ -50,12 +50,18 @@ if (!isset($_SESSION['ID'])){
 <body>
   <?php require_once('head.html') ?>
   <div class="container">
-    <div class="form-box">
-        <br/><br/>      
-        <div class="table-responsive"> 
-            <?php  load_table_zone2(); ?>
-        </div>
+
+   <div class="form-box">
+    <?php require_once('errors.php') ?>
+    <?php require_once('statusMessage.php') ?>
+    <br/><br/>      
+    <div class="table-responsive"> 
+        <?php  load_table_zone2(); ?>
     </div>
+    <div>
+      <a href="add-zone.php" target="_blank" class="btn"><i class="fa fa-plus"></i> Thêm khu</a>
+  </div> 
+</div>
 </div>
 
 <div class="container"> 
@@ -68,7 +74,7 @@ if (!isset($_SESSION['ID'])){
 </body>
 </html>
 <script >
- $(document).ready(function() {
+   $(document).ready(function() {
     $('#zone_data').DataTable( {
         "pagingType": "full_numbers"
     } );

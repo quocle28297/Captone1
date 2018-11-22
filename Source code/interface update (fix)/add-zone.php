@@ -111,7 +111,7 @@ if (!isset($_SESSION['ID'])){
                                         <div class="col-xs-12 col-sm-4 col-md-4">
                                             <div class="select--box">
                                                 <label for="address">Địa chỉ*</label>
-                                                <input type="text" class="form-control" name="address" id="address" placeholder="Địa chỉ cụ thể VD: số nhà, tên đường" required="" value="<?php echo give_value_zone(); ?>">
+                                                <input type="text" class="form-control" name="address" id="address" placeholder="Địa chỉ cụ thể VD: số nhà, tên đường" required="" value="<?php echo give_value_address(); ?>">
                                             </div>
                                         </div>
 
