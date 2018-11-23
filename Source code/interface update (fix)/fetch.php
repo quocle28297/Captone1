@@ -76,7 +76,7 @@ function load_table_zone()
 			<td>'.$row["ZONE_NAME"].'</td>
 			<td>'.$row["ZONE_ADDRESS"].'</td>
 			<td><form method="POST" action="edit-room.php"> <input type="submit" id="'.$row["ZONE_ID"].'" value="'.$row["ZONE_ID"].'" name="Edit"  class="alert-box edit"></form></td>
-			<td><button type="button" class="alert-box delete" id_edit_zone="'.$row["ZONE_ID"].'" data-name="'.$row["ZONE_NAME"].'"  ></button></td>
+			<td><button type="button" class="alert-box delete" id_edit_zone="'.$row["ZONE_ID"].'" data-name="'.$row["ZONE_NAME"].'"   value="delete" ></button></td>
 
 			</tr>
 			';

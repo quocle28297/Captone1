@@ -52,37 +52,8 @@ if (!isset($_SESSION['ID'])){
         
         <?php require_once('head.html') ?>
 
-        <!-- Page Title #1
-            ============================================ -->
-            <section id="page-title" class="page-title bg-overlay bg-overlay-dark2 bg-section" style="background-image: url(&quot;assets/images/page-titles/1.jpg&quot;);">
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-6 col-md-offset-3">
-                            <div class="title title-1 text-center">
-                                <div class="title--content">
-                                    <div class="title--heading">
-                                        <h1>Add Property</h1>
-                                    </div>
-                                    <ol class="breadcrumb">
-                                        <li><a href="#">Home</a></li>
-                                        <li class="active">Add Property</li>
-                                    </ol>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            <!-- .title end -->
-                        </div>
-                        <!-- .col-md-12 end -->
-                    </div>
-                    <!-- .row end -->
-                </div>
-                <!-- .container end -->
-            </section>
-            <!-- #page-title end -->
-
-        <!-- #Add Property
-            ============================================= -->
+            
             <section id="add-property" class="add-property">
                 <div class="container">
                     <div class="row">
