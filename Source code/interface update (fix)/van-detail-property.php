@@ -165,9 +165,9 @@ $mota = $row['ROOM_DISCRIBE'];
                                                 while ($row = @mysqli_fetch_assoc($result)){
                                                     ?>                                            
                                                     <div style="display: inline-block;" class="room-detail-block">
-                                                        <button class="owl-thumb-item">
+                                                        <!-- <button class="owl-thumb-item"> -->
                                                             <?php echo "<a href='room.php?idroom=".$row['ROOM_ID']."'>"; ?><img src="image/2.jpg" alt="Property Image thumb" id="thumb"><?php echo"</a>"; ?>
-                                                        </button><br>
+                                                        <!-- </button><br> -->
                                                         <p style="margin-left: 5px;">
                                                            <span style="font-size: 13px;margin: 0;color: #34495e;display: none;">id: <?php echo $row['ROOM_ID']; ?></span>
                                                            <span style="font-size: 13px;margin: 0;color: #34495e">Loại: <?php echo $row['TYPE_NAME']; ?></span><br>
