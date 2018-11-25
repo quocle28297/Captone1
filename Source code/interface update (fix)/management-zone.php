@@ -71,6 +71,9 @@ if (!isset($_SESSION['ID'])){
         </div>
     </div>
 </div>
+<script src="js/plugins.js"></script>   
+<script src="js/dropzone.js"></script>
+<script src="js/functions.js"></script>
 </body>
 </html>
 <script >

@@ -189,8 +189,9 @@ function load_table_room()
 		echo $output;
 	}
 }
-function roomID($ROOM_TYPE_ID)
+function roomID($ROOM_Status_ID)
 {
+	
 	$servername = "localhost";
 	$username = "root";
 	$password = "";
@@ -199,8 +200,9 @@ function roomID($ROOM_TYPE_ID)
 // Create connection
 	$conn = new mysqli($servername, $username, $password,$databaseName);
 	mysqli_set_charset($conn, 'UTF8');
+	//array_push($errors,"dkm cmmm");
 	
-	$query = "SELECT * FROM status where STATUS_ID ='$ROOM_TYPE_ID'";
+	$query = "SELECT * FROM status where STATUS_ID ='$ROOM_Status_ID'";
 	$result1 = mysqli_query($conn,$query);
 	while($row = mysqli_fetch_array($result1)) 
 	{
@@ -330,7 +332,10 @@ function load_table_room2()
 		$count =0;
 		while($row = mysqli_fetch_array($result) )
 		{
-			$a= roomID($row["ROOM_TYPE_ID"]);
+			$a= roomID($row["ROOM_STATUS_ID"]);
+			$status=statusred($row["ROOM_STATUS_ID"]);
+			//format tiền
+			$Room_price=number_format($row["ROOM_PRICE"]).'₫';
 			$count ++;
 
 			$output .='
@@ -346,11 +351,12 @@ function load_table_room2()
 			class="alert-box information">
 			</form></td>
 
-			<td>'.$count.'</td>
-			<td>'.$row["ROOM_ID"].'</td>
-			<td>'.$row["ROOM_NAME"].'</td>
-			<td>'.$row["ROOM_PRICE"].'</td>
-			<td>'.$row["ROOM_ACREAGE"].'</td>
+			<td><p class="table_trunganh">'.$count.'</p></td>
+			<td><p class="table_trunganh">'.$row["ROOM_ID"].'</p></td>
+			<td><p class="table_trunganh">'.$row["ROOM_NAME"].'</p></td>
+			
+			<td><p class="table_trunganh">'.$Room_price.'</p></td>
+			<td> <p class="table_trunganh"> '.$row["ROOM_ACREAGE"].'&nbspm²</p></td>
 
 			<td><form method="post"
 			action="edit-room.php">
@@ -370,7 +376,7 @@ function load_table_room2()
 			>
 
 			</button></td>
-			<td>'.$a.'</td>
+			<td>'.$status.' '.$a.'<p></td>
 
 			</tr>
 			';
@@ -395,6 +401,25 @@ function load_table_room2()
 		echo $output;
 	}
 }
+//laod  red  statý
+function statusred($status_ID)
+{
+	$output='';
+	if($status_ID == '1' )
+	{
+		$output='
+		<p class="table_trunganh">
+		';
+	}
+	if($status_ID == '2' )
+	{
+		$output='
+		<p class="table_tunganhred">
+		';
+	}		
+	return $output;
+}
+//
 function load_table_zone2()
 {	
 	
@@ -438,10 +463,10 @@ function load_table_zone2()
 		class="alert-box information">
 		</form></td>
 
-		<td>'.$count.'</td>
-		<td>'.$row["ZONE_ID"].'</td>
-		<td>'.$row["ZONE_NAME"].'</td>
-		<td>'.$row["ZONE_ADDRESS"].'</td>
+		<td><p class="table_trunganh">'.$count.'</p></td>
+		<td><p class="table_trunganh">'.$row["ZONE_ID"].'</p></td>
+		<td><p class="table_trunganh">'.$row["ZONE_NAME"].'</p></td>
+		<td><p class="table_trunganh">'.$row["ZONE_ADDRESS"].'</p></td>
 
 		<td><form method="POST" 
 		action="#"> 

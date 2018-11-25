@@ -50,6 +50,7 @@ if (!isset($_SESSION['ID'])){
     <?php require_once('head.html') ?>
     <div class="container"> 
         <div class="form-box"> 
+           
             <h1 align="center"><?php echo getPostDetail_zone(); ?></h1>  
             <br />  
             <div class="table-responsive">  

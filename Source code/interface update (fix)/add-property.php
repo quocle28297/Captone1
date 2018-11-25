@@ -159,15 +159,15 @@ if (!isset($_SESSION['ID'])){
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
                                             <label for="Size">Diện tích</label>
-                                            <input type="text" class="form-control" name="Size" id="Size" placeholder="Đơn vị là m²" value="<?php echo give_value_area(); ?>">
+                                            <input type="text" class="form-control trunganh" name="Size" id="Size" placeholder="Đơn vị là m²" value="<?php echo give_value_area(); ?>">
                                         </div>
                                     </div>
                                     <!-- .col-md-4 end -->
                                     <div class="col-xs-12 col-sm-4 col-md-4">
                                         <div class="form-group">
-                                            <label for="Sale-Rent-Price">Giá*</label>
+                                            <label for="Sale-Rent-Price">Giá* VND</label>
                                             <!-- onChange="format_curency(this);" --> 
-                                            <input type="text" class="form-control" name="Sale-Rent-Price" id="Sale-Rent-Price" placeholder="Giá tiền  trên một tháng" value="<?php echo give_value_price(); ?>">
+                                            <input type="text" class="form-control trunganh" name="Sale-Rent-Price" id="Sale-Rent-Price" placeholder="Giá tiền  trên một tháng" value="<?php echo give_value_price(); ?>">
                                         </div>
                                     </div>
                                     <!-- .=======phan dau==== -->
@@ -377,20 +377,6 @@ if (!isset($_SESSION['ID'])){
     }
 </script>
 <script>  
-    //load quan huyen
-    $(document).ready(function(){  
-      $('#select-Province').change(function(){  
-       var PROVINCE_ID = $(this).val();  
-       $.ajax({  
-        url:"District.php",  
-        method:"POST",  
-        data:{PROVINCE_ID:PROVINCE_ID},  
-        success:function(data){  
-         $('#select-District').html(data);  
-     }  
- });  
-   });  
-  }); 
   //load phuong xa
   $(document).ready(function(){  
       $('#select-District').change(function(){  
