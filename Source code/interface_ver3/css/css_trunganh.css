@@ -1,0 +1,46 @@
+
+    /* thong bao*/
+    .alert-box {
+    	color: #555;
+    	border-radius: 10px;
+    	font-family: Tahoma, Geneva, Arial, sans-serif;
+    	font-size: 11px;
+    	padding: 10px 10px 10px 36px;
+    	margin: 10px;
+    }
+    .alert-box span {
+    	font-weight: bold;
+    	text-transform: uppercase;
+    }
+    .error {
+    	background: #ffecec url('images/error.png') no-repeat 10px 50%;
+    	border: 1px solid #f5aca6;
+    }
+    .delete {
+    	background: #ffecec url('images/error.png') no-repeat 10px 50%;
+    	border: 1px solid #f5aca6;
+    }
+    .success {
+    	background: #e9ffd9 url('images/success.png') no-repeat 10px 50%;
+    	border: 1px solid #a6ca8a;
+    }
+    .warning {
+    	background: #fff8c4 url('images/warning.png') no-repeat 10px 50%;
+    	border: 1px solid #f2c779;
+    }
+    .information {
+    	background: #e3f7fc url('images/information.png') no-repeat 10px 50%;
+    	border: 1px solid #8ed9f6;
+    }
+    .edit {
+    	background: #e3f7fc url('images/edit.png') no-repeat 10px 50%;
+    	border: 1px solid #8ed9f6;
+    }
+    .title {
+    	font-family: Arial, sans-serif;
+    	text-align: center;
+    	font-size: 300%;
+    	background: #fff8c4 ;
+    	border: 1px solid #f2c779;
+    }
+    
