@@ -15,7 +15,7 @@ if (isset($_GET['logout'])) {
 require_once "config.php";
 
 
-$redirectURL = "http://localhost/text/interface%20update%20(fix)/fb-callback.php";
+$redirectURL = "http://localhost/php/interface%20update%20(fix)/fb-callback.php";
 $permissions = ['email'];
 $loginURL = $helper->getLoginUrl($redirectURL, $permissions);
 ?>
@@ -385,7 +385,7 @@ $loginURL = $helper->getLoginUrl($redirectURL, $permissions);
         <script src="js/jscheckvai.js"></script>
         
         <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAdd5CkT5Or59lPzUHISxleG_XO96X3-S8&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVdRkvgs4_mrMS6VM2wU1x_Osd9In6K7E&callback=initMap">
     </script> 
 </body>
 

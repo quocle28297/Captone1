@@ -92,7 +92,7 @@ $mota = $row['ROOM_DISCRIBE'];
                                         <h1><?php echo $name ?></h1>
                                     </div>
                                     <ol class="breadcrumb">
-                                        <li><a href="#">Home</a></li>
+                                        <li><a href="home-map.php">Trang Chủ</a></li>
                                         <li class="active">Single Property</li>
                                     </ol>
                                 </div>
@@ -122,7 +122,7 @@ $mota = $row['ROOM_DISCRIBE'];
                                     </div>
                                     <div class="pull-right">
                                         <span class="property--status">Giá Từ</span>
-                                        <p class="property--price"><?php echo $minprice."VNĐ - ".$maxprice."VNĐ"; ?></p>
+                                        <p class="property--price"><?php echo number_format($minprice,0,",",".")."VNĐ - ".number_format($maxprice,0,",",".")."VNĐ"; ?></p>
                                     </div>
                                 </div>
                                 <!-- .property-info end -->
@@ -172,7 +172,7 @@ $mota = $row['ROOM_DISCRIBE'];
                                                            <span style="font-size: 13px;margin: 0;color: #34495e;display: none;">id: <?php echo $row['ROOM_ID']; ?></span>
                                                            <span style="font-size: 13px;margin: 0;color: #34495e">Loại: <?php echo $row['TYPE_NAME']; ?></span><br>
                                                            <span style="font-size: 13px;margin: 0;color: #34495e" >Diện Tích: <?php echo $row['ROOM_ACREAGE'].' m'; ?><sup>2</sup></span><br>
-                                                           <span style="font-size: 13px;margin: 0;color: #34495e">Giá: <?php echo $row['ROOM_PRICE'].' vnđ'; ?></span><br>
+                                                           <span style="font-size: 13px;margin: 0;color: #34495e">Giá: <?php echo number_format($row['ROOM_PRICE'],0,",",".").' vnđ'; ?></span><br>
                                                            <span style="font-size: 13px;margin: 0;color: #34495e">Trống: <?php echo $row['soluong']." phòng"; ?></span>
                                                        </p>
                                                    </div>
@@ -302,36 +302,7 @@ $mota = $row['ROOM_DISCRIBE'];
 
                         <!-- widget request
                             =============================-->
-                            <div class="widget widget-request">
-                                <div class="widget--title">
-                                    <h5>Gửi yêu cầu</h5>
-                                </div>
-                                <div class="widget--content">
-                                    <form class="mb-0">
-                                        <div class="form-group">
-                                            <label for="contact-name">Tên của bạn*</label>
-                                            <input type="text" class="form-control" name="contact-name" id="contact-name" required>
-                                        </div>
-                                        <!-- .form-group end -->
-                                        <div class="form-group">
-                                            <label for="contact-email">Email *</label>
-                                            <input type="email" class="form-control" name="contact-email" id="contact-email" required>
-                                        </div>
-                                        <!-- .form-group end -->
-                                        <div class="form-group">
-                                            <label for="contact-phone">Số điện thoại</label>
-                                            <input type="text" class="form-control" name="contact-phone" id="contact-phone" placeholder="(optional)">
-                                        </div>
-                                        <!-- .form-group end -->
-                                        <div class="form-group">
-                                            <label for="message">Lời nhắn*</label>
-                                            <textarea class="form-control" name="contact-message" id="message" rows="2" placeholder="(optional)"></textarea>
-                                        </div>
-                                        <!-- .form-group end -->
-                                        <input type="submit" value="Gửi yêu cầu" name="submit" class="btn btn--primary btn--block">
-                                    </form>
-                                </div>
-                            </div>
+                           
                             <div class="report">
                                 <div class="widget widget-request">
                                   <h3>Báo cáo</h3>
@@ -661,7 +632,7 @@ $mota = $row['ROOM_DISCRIBE'];
         <script src="js/plugins.js"></script>
         <script src="js/functions.js"></script>
          <script src="js/jscheckvai.js"></script>
-        <script src="http://maps.google.com/maps/api/js?sensor=true&amp;key=AIzaSyAdd5CkT5Or59lPzUHISxleG_XO96X3-S8"></script>
+        <script src="http://maps.google.com/maps/api/js?sensor=true&amp;key=AIzaSyBVdRkvgs4_mrMS6VM2wU1x_Osd9In6K7E"></script>
         <script src="js/jquery.gmap.min.js"></script>
         <script>
             $('#googleMap').gMap({
