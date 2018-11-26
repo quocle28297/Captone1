@@ -342,7 +342,7 @@ function load_table_room2()
 
 			<tr>
 			<td><form method="POST"
-			action="#">
+			action="accept.php">
 			<input 
 			type="submit" 
 			id="'.$row["ROOM_ID"].'"
@@ -503,5 +503,135 @@ function load_table_zone2()
 	</tfoot>
 	</table>';
 	echo $output;
+}
+// format dd/mm/yyyy
+function time_count($time1,$time2)
+{
+	
+	$servername = "localhost";
+	$username = "root";
+	$password = "";
+	$databaseName="qlphongtro";
+
+// Create connection
+	$conn = new mysqli($servername, $username, $password,$databaseName);
+	mysqli_set_charset($conn, 'UTF8');
+	//array_push($errors,"dkm cmmm");
+	
+	$query = "SELECT TIMESTAMPDIFF(MONTH, '$time1', '$time2	')";
+	$result1 = mysqli_query($conn,$query);
+	while($row = mysqli_fetch_array($result1)) 
+	{
+
+		$output=$row[0];
+	}
+	return $output;
+}
+// format dd/mm/yyyy
+function load_table_accept()
+{
+	if(isset($_POST['detail-room']))
+	{
+	$connect = mysqli_connect("localhost", "root", "", "qlphongtro");  
+	$query = "SELECT * FROM contract where CONTRACT_ROOM_ID ='".$_POST['detail-room']."'";
+	
+	mysqli_set_charset($connect, 'UTF8');
+	$result = mysqli_query($connect, $query);
+	$output='';
+	$output .='
+	<table id="zone_data" class = "table table-bordered table-striped">  
+	<thead>  
+	<tr>
+	<th>ID Giao Dịch</th>
+	<th>ID người thuê</th>
+	<th>Ngày bắt đầu</th>
+	<th>Ngày kết thúc</th>
+	<th>Giá tiền</th>
+	<th>Đồng ý</th>
+	<th>Từ chối</th>
+	</tr>
+	<thead>  
+	<tbody>
+	';
+
+	$count =0;
+	while($row = mysqli_fetch_array($result))
+	{
+		
+		$count_day=0;
+		$timestar = $row["CONTRACT_STARTDATE"];
+		$timesend=$row["CONTRACT_ENDDATE"];
+		
+		$count_day=time_count($timestar,$timesend);
+		//$first_date = strtotime('timestar');
+		//$second_date = strtotime('timesend');
+		$timestar=date("d/m/Y", strtotime($timestar));
+		$timesend=date("d/m/Y", strtotime($timesend));
+		//$Room_price=number_format($row["ROOM_PRICE"]).'₫';
+		
+		//$date_diff = date_diff($first_date, $second_date);
+		
+		//$datediff = $timesend - $timesend;
+		$Price = $row["CONTRACT_PRICE"];
+		$Price=$count_day*$Price;
+		$Price = number_format($Price).'₫';
+		
+		
+
+		$output .='
+		
+
+		<tr>
+		<td><p class="table_trunganh">'.$row["CONTRACT_ROOM_ID"].'</p></td>
+		<td><a href="profile.php?profile='.$row["CONTRACT_USERS_ID"].'" target="_blank" ><p class="table_trunganh_id">'.$row["CONTRACT_USERS_ID"].'<p></a></td>
+		<td><p class="table_trunganh">'.$timestar.'</p></td>
+		<td><p class="table_trunganh">'.$timesend.'</p></td>
+		<td><p class="table_trunganh">'.$Price.'</p></td>
+		
+		<td><form method="POST" 
+		action="#"> 
+		<input 
+		type="submit" 
+		id="'.$row["CONTRACT_ROOM_ID"].'" 
+		value="'.$row["CONTRACT_ROOM_ID"].'" 
+		name="no-accept"  
+		class="alert-box success">
+		</form>
+		</td>
+		
+		<td><form method="get" 
+		action="#"> 
+		<input 
+		type="submit" 
+		id="'.$row["CONTRACT_ROOM_ID"].'" 
+		value="'.$row["CONTRACT_ROOM_ID"].'" 
+		
+		name="no-accept"  
+		class="alert-box error">
+		</form>
+		</td>
+
+		
+		
+		';
+	}
+
+	$output .='
+	</tbody>
+	<tfoot>
+	<tr>
+	<th>ID Giao Dịch</th>
+	<th>ID người thuê</th>
+	<th>Ngày bắt đầu</th>
+	<th>Ngày kết thúc</th>
+	<th>Giá tiền</th>
+	<th>Đồng ý</th>
+	<th>Từ chối</th>
+	</tr>
+	</tfoot>
+	</table>';
+	echo $output;
+	}
+	
 }
 ?>

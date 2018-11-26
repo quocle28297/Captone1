@@ -9135,6 +9135,24 @@ button.btn {
 
 		line-height: 26px;
 	}
+	p.table_trunganh_id
+	{
+		text-decoration: underline;
+		text-align: center;
+		padding: 10px 0px 0px 0px;
+		color: #0c0c0c;
+
+		font-size: 17px;
+
+		font-weight: 400;
+
+		line-height: 26px;
+	}
+	p.table_trunganh_id:hover
+	{
+		
+		color: #4CAF50;
+	}
 	p.table_tunganhred
 	{
 		padding: 10px 0px 0px;

@@ -15,7 +15,7 @@ if (isset($_GET['logout'])) {
 require_once "config.php";
 
 
-$redirectURL = "http://localhost/php/interface%20update%20(fix)/fb-callback.php";
+$redirectURL = "http://localhost/text/interface%20update%20(fix)/fb-callback.php";
 $permissions = ['email'];
 $loginURL = $helper->getLoginUrl($redirectURL, $permissions);
 ?>

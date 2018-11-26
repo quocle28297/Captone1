@@ -11,7 +11,8 @@
     .alert-box span {
     	font-weight: bold;
     	text-transform: uppercase;
-    }
+	}
+	
     .error {
     	background: #ffecec url('images/error.png') no-repeat 10px 50%;
     	border: 1px solid #f5aca6;
@@ -35,6 +36,14 @@
     .edit {
     	background: #e3f7fc url('images/edit.png') no-repeat 10px 50%;
     	border: 1px solid #8ed9f6;
+	}
+	.accept{
+		background: #e9ffd9 url('images/success.png') no-repeat 10px 50%;
+    	border: 1px solid #a6ca8a;
+	}
+	.cancel {
+    	background: #ffecec url('images/error.png') no-repeat 10px 50%;
+    	border: 1px solid #f5aca6;
     }
     .title {
     	font-family: Arial, sans-serif;
