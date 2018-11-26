@@ -93,7 +93,7 @@ $mota = $row['ROOM_DISCRIBE'];
                                     </div>
                                     <ol class="breadcrumb">
                                         <li><a href="home-map.php">Trang Chủ</a></li>
-                                        <li class="active">Single Property</li>
+                                        
                                     </ol>
                                 </div>
                                 <div class="clearfix"></div>
@@ -163,15 +163,22 @@ $mota = $row['ROOM_DISCRIBE'];
                                                     die('Invalid query: ' . mysqli_error($connection));
                                                 }
                                                 while ($row = @mysqli_fetch_assoc($result)){
-                                                    ?>                                            
+                                                    $query1 = "SELECT image.IMAGE_NAME FROM image INNER JOIN room ON image.IMAGE_ROOM_ID = room.ROOM_ID WHERE room.ROOM_ID =".$row['ROOM_ID'];
+                                                    $result1 = mysqli_query($connection,$query1);
+                                                    if (!$result1) {
+                                                        die('Invalid query: ' . mysqli_error($connection));
+                                                    }
+                                                    
+                                                    $row1 = @mysqli_fetch_assoc($result1); 
+                                                ?>                                           
                                                     <div style="display: inline-block;" class="room-detail-block">
                                                         <!-- <button class="owl-thumb-item"> -->
-                                                            <?php echo "<a href='room.php?idroom=".$row['ROOM_ID']."'>"; ?><img src="image/2.jpg" alt="Property Image thumb" id="thumb"><?php echo"</a>"; ?>
+                                                            <?php echo "<a href='room.php?idroom=".$row['ROOM_ID']."'></br><img src='uploads/".$row1['IMAGE_NAME']."' alt='Property Image thumb' id='thumb'>"; ?><?php echo"</a>"; ?>
                                                         <!-- </button><br> -->
                                                         <p style="margin-left: 5px;">
                                                            <span style="font-size: 13px;margin: 0;color: #34495e;display: none;">id: <?php echo $row['ROOM_ID']; ?></span>
                                                            <span style="font-size: 13px;margin: 0;color: #34495e">Loại: <?php echo $row['TYPE_NAME']; ?></span><br>
-                                                           <span style="font-size: 13px;margin: 0;color: #34495e" >Diện Tích: <?php echo $row['ROOM_ACREAGE'].' m'; ?><sup>2</sup></span><br>
+                                                           <span style="font-size: 13px;margin: 0;color: #34495e" >Diện Tích: <?php echo number_format($row['ROOM_ACREAGE'],0,",",".").' m'; ?><sup>2</sup></span><br>
                                                            <span style="font-size: 13px;margin: 0;color: #34495e">Giá: <?php echo number_format($row['ROOM_PRICE'],0,",",".").' vnđ'; ?></span><br>
                                                            <span style="font-size: 13px;margin: 0;color: #34495e">Trống: <?php echo $row['soluong']." phòng"; ?></span>
                                                        </p>

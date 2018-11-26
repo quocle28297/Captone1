@@ -318,7 +318,13 @@ $mota = $row['ROOM_DISCRIBE'];
                                     <!-- .agent-profile-details end -->
                                     <div class="agent--contact">
                                         <ul class="list-unstyled">
-                                            <li><i class="fa fa-phone"></i><?php echo $userphone; ?></li>
+                                            <li><i class="fa fa-phone"></i><?php
+                                            if(isset($_SESSION["ID"]))
+                                                echo $userphone;
+                                            else
+                                                echo "Đăng nhập để xem số điện thoại"; 
+                                            ?>
+                                            </li>
                                             <li><i class="fa fa-envelope-o"></i><?php echo $username; ?></li>
                                             
                                         </ul>
