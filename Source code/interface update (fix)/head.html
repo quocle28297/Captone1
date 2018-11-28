@@ -5,192 +5,194 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"
-                        aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="logo" href="home-map.php">
-                        <img class="logo-light" src="image/logo-light.png" alt="Land Logo">
-                        <img class="logo-dark" src="image/logo-dark.png" alt="Land Logo">
-                    </a>
-                </div>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
-                    <ul class="nav navbar-nav nav-pos-center navbar-left">
-                        <!-- Home Menu -->
+                    aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="logo" href="home-map.php">
+                    <img class="logo-light" src="image/logo-light.png" alt="Land Logo">
+                    <img class="logo-dark" src="image/logo-dark.png" alt="Land Logo">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse pull-right" id="navbar-collapse-1">
+                <ul class="nav navbar-nav nav-pos-center navbar-left">
 
-                        <!-- li end -->
 
-                        <!-- Pages Menu-->
-
-                        <!-- li end -->
-
-                        <!-- Profile Menu-->
-                        <li> <a href="management-zone.php">Quản lý khu</a>
-                            <!-- <li> <a  onclick="check_zone_login()" href="#">Quản lý khu</a> -->
-                        <li>
+                    <?php                      
+                    if(isset($_SESSION['ID']))
+                    {                          
+                     echo '
+                     <li> <a href="management-zone.php">Quản lý khu</a><li>
                         <li> <a href="add-property.php">Thêm phòng</a></li>
-                        <!-- li end -->
-
-                        <!-- Properties Menu-->
-
-                        <!-- li end -->
-                        <?php                      
-                        if(isset($_SESSION['ID']))
-                        {                          
-                           echo '<li> <a onclick="check_successs()" href="#" > Thoát </a></li>';                         
-                        }
-                      ?>
-                        <script >
-                            function check_successs() {
-                                var r = confirm("Bạn chắn chắn  muốn thoát ");
-                                if (r == true) {
-                                    window.location = "home-map.php?logout";
-                                }
+                        <li> <a onclick="check_successs()" href="#" > Thoát </a></li>
+                       <li> <a href="profile.php?profile='.$_SESSION['ID'].'">Thông tin cá nhân</a></li>
+                        ';                         
+                    }
+                    else
+                     {
+                      echo '
+                      <li> <a>Vui lòng đăng nhập</a></li>
+                      ';
+                     }
+                    ?>
+                    <script >
+                        function check_successs() {
+                            var r = confirm("Bạn chắn chắn  muốn thoát ");
+                            if (r == true) {
+                                window.location = "home-map.php?logout";
                             }
-                        </script>
-                    </ul>
-                    <!-- Module Signup  -->
-                    <!-- check nut login -->
-                    <div class="module module-login pull-left">
-                        <?php  if (!isset($_SESSION['USERS_NAME'])&&!isset($_SESSION['userData'])) : ?>
-                        <a class="btn-popup" data-toggle="modal" data-target="#signupModule">Login</a>
-                        <?php endif ?>
+                        }
+                    </script>
+                </ul>
+                <!-- Module Signup  -->
+                <!-- check nut login -->
+                <div class="module module-login pull-left">
+                    <?php  if (!isset($_SESSION['USERS_NAME'])&&!isset($_SESSION['userData'])) : ?>
+                    <a class="btn-popup" data-toggle="modal" data-target="#signupModule">Đăng Nhập</a>
+                    <?php endif ?>
 
-                        <?php  if (isset($_SESSION['userData'])) : ?>
-                        <a class="btn-popup" data-toggle="modal" data-target="#frofile">Welcome <strong>
-                                <?php echo $_SESSION['userData']['first_name']." ".$_SESSION['userData']['last_name'];
+                    <?php  if (isset($_SESSION['userData'])) : ?>
+                    <a class="btn-popup" data-toggle="modal" data-target="#frofile"> <strong>
+                        <?php echo $_SESSION['userData']['first_name']." ".$_SESSION['userData']['last_name'];
                         ?></strong></a>
                         <?php endif ?>
 
                         <?php  if (isset($_SESSION['USERS_NAME'])) : ?>
-                        <a class="btn-popup" data-toggle="modal" data-target="#frofile">Welcome <strong>
-                                <?php echo $_SESSION['USERS_NAME'];
+                        <a class="btn-popup" data-toggle="modal" data-target="#frofile"> <strong>
+                            <?php echo $_SESSION['USERS_NAME'];
                             ?></strong></a>
-                        <?php endif ?>
-                        <!-- check nut login -->
-                        <div class="modal register-login-modal fade" tabindex="-1" role="dialog" id="signupModule">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-body">
-                                        <div class="row">
+                            <?php endif ?>
+                            <!-- check nut login -->
+                            <div class="modal register-login-modal fade" tabindex="-1" role="dialog" id="signupModule">
+                                <div class="modal-dialog modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="row">
 
-                                            <!-- Nav tabs -->
-                                            <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#login" data-toggle="tab">login</a>
-                                                </li>
-                                                <li><a href="#signup" data-toggle="tab">signup</a>
-                                                </li>
-                                            </ul>
-                                            <!-- Tab panes -->
-                                            <div class="tab-content">
-                                                <div class="tab-pane fade in active" id="login">
-                                                    <div class="signup-form-container ">
-                                                        <form class="mb-0" method="post" action="home-map.php">
-                                                            <?php include('errors.php'); ?>
-                                                            <a type="button" onclick="window.location = '<?php echo $loginURL ?>';"
-                                                                value="Log In With Facebook" class="btn btn--facebook btn--block"><i
+                                                <!-- Nav tabs -->
+                                                <ul class="nav nav-tabs">
+                                                    <li class="active"><a href="#login" data-toggle="tab">Đăng Nhập</a>
+                                                    </li>
+                                                    <li><a href="#signup" data-toggle="tab">Đăng Ký</a>
+                                                    </li>
+                                                </ul>
+                                                <!-- Tab panes -->
+                                                <div class="tab-content">
+                                                    <div class="tab-pane fade in active" id="login">
+                                                        <div class="signup-form-container ">
+                                                            <form class="mb-0" method="post" action="home-map.php">
+                                                                <?php include('errors.php'); ?>
+                                                                <a type="button" onclick="window.location = '<?php echo $loginURL ?>';"
+                                                                    value="Log In With Facebook" class="btn btn--facebook btn--block"><i
                                                                     class="fa fa-facebook-square"></i>Login with
                                                                 Facebook</a>
 
+                                                                <div class="or-text">
+                                                                    <span>or</span>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <input type="email" class="form-control" name="login-email"
+                                                                    id="login-email" placeholder="Email Address">
+                                                                    <span class="form-error" id="login-email-error-message">tets</span>
+                                                                </div>
+                                                                <!-- .form-group end -->
+                                                                <div class="form-group">
+                                                                    <input type="password" class="form-control" name="login-password"
+                                                                    id="login-password" placeholder="Password">
+                                                                    <span class="form-error" id="login-Password-error-message">tets</span>
+                                                                </div>
+                                                                <!-- .form-group end -->
+                                                                <div class="input-checkbox">
+                                                                    <label class="label-checkbox">
+                                                                        <span>Remember Me</span>
+                                                                        <input type="checkbox">
+                                                                        <span class="check-indicator"></span>
+                                                                    </label>
+                                                                </div>
+                                                                <input type="submit" class="btn btn--primary btn--block"
+                                                                value="Đăng Nhập" name="SignIn" id="SignIn">
+                                                                <a href="#" class="forget-password">Forget your password?</a>
+                                                            </form>
+                                                            <!-- form  end -->
+                                                        </div>
+                                                        <!-- .signup-form end -->
+                                                    </div>
+                                                    <div class="tab-pane" id="signup">
+
+                                                        <form class="mb-0" method="post" action="home-map.php">
+                                                            <?php include('errors.php'); ?>
                                                             <div class="or-text">
                                                                 <span>or</span>
                                                             </div>
-
                                                             <div class="form-group">
-                                                                <input type="email" class="form-control" name="login-email"
-                                                                    id="login-email" placeholder="Email Address">
-                                                                <span class="form-error" id="login-email-error-message">tets</span>
+                                                                <input type="text" class="form-control" name="full-name" id="full-name"
+                                                                placeholder="Họ và tên. . ." maxlength="25">
+                                                                <span class="form-error" id="full-name-error-message" value="<?php echo $USERS_NAME; ?>">tets</span>
                                                             </div>
                                                             <!-- .form-group end -->
                                                             <div class="form-group">
-                                                                <input type="password" class="form-control" name="login-password"
-                                                                    id="login-password" placeholder="Password">
-                                                                <span class="form-error" id="login-Password-error-message">tets</span>
+                                                                <input type="email" class="form-control" name="register-email"
+                                                                id="register-email" placeholder="Đại chỉ gmail. . ." >
+                                                                <span class="form-error" id="email-error-message" value="<?php echo $email; ?>">tets</span>
                                                             </div>
+                                                            <!-- .form-group end -->
+                                                            <!--sdt  -->
+                                                             <div class="form-group">
+                                                                <input type="text" class="form-control" name="phone-h"
+                                                                id="phone-h" placeholder="Số điện thoại. . ." >
+                                                                <span class="form-error" id="phone-h-error-message" value="xxx">tets</span>
+                                                            </div>
+                                                            <!--sdt  -->
+                                                            <!-- passs1 -->
+                                                            <div class="form-group">
+                                                                <input type="password" class="form-control" name="register-password_1"
+                                                                id="register-password_1" placeholder="Mật Khẩu. . .">
+                                                                <span class="form-error" id="Password-error-message">tets</span>
+                                                            </div>
+                                                            <!-- passs2 -->
+                                                            <div class="form-group">
+                                                                <input type="password" class="form-control" name="register-password_2"
+                                                                id="register-password_2" placeholder="Mật Khẩu lần 2...">
+                                                                <span class="form-error" id="Password-error-message-again">tets</span>
+                                                            </div>
+
+
                                                             <!-- .form-group end -->
                                                             <div class="input-checkbox">
                                                                 <label class="label-checkbox">
-                                                                    <span>Remember Me</span>
+                                                                    <span>I agree with all <a href="#">Terms & Conditions</a></span>
                                                                     <input type="checkbox">
                                                                     <span class="check-indicator"></span>
                                                                 </label>
                                                             </div>
-                                                            <input type="submit" class="btn btn--primary btn--block"
-                                                                value="SignIn" name="SignIn" id="SignIn">
-                                                            <a href="#" class="forget-password">Forget your password?</a>
+                                                            <input type="submit" class="btn btn--primary btn--block" value="Tạo Tài Khoản"
+                                                            name="Register" id="Register">
                                                         </form>
                                                         <!-- form  end -->
                                                     </div>
-                                                    <!-- .signup-form end -->
+
                                                 </div>
-                                                <div class="tab-pane" id="signup">
-
-                                                    <form class="mb-0" method="post" action="home-map.php">
-                                                        <?php include('errors.php'); ?>
-                                                        <div class="or-text">
-                                                            <span>or</span>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <input type="text" class="form-control" name="full-name" id="full-name"
-                                                                placeholder="Full Name" maxlength="25">
-                                                            <span class="form-error" id="full-name-error-message" value="<?php echo $USERS_NAME; ?>">tets</span>
-                                                        </div>
-                                                        <!-- .form-group end -->
-                                                        <div class="form-group">
-                                                            <input type="email" class="form-control" name="register-email"
-                                                                id="register-email" placeholder="Email Address" >
-                                                            <span class="form-error" id="email-error-message" value="<?php echo $email; ?>">tets</span>
-                                                        </div>
-                                                        <!-- .form-group end -->
-                                                        <!-- passs1 -->
-                                                        <div class="form-group">
-                                                            <input type="password" class="form-control" name="register-password_1"
-                                                                id="register-password_1" placeholder="Password">
-                                                            <span class="form-error" id="Password-error-message">tets</span>
-                                                        </div>
-                                                        <!-- passs2 -->
-                                                        <div class="form-group">
-                                                            <input type="password" class="form-control" name="register-password_2"
-                                                                id="register-password_2" placeholder="Password again">
-                                                            <span class="form-error" id="Password-error-message-again">tets</span>
-                                                        </div>
-
-
-                                                        <!-- .form-group end -->
-                                                        <div class="input-checkbox">
-                                                            <label class="label-checkbox">
-                                                                <span>I agree with all <a href="#">Terms & Conditions</a></span>
-                                                                <input type="checkbox">
-                                                                <span class="check-indicator"></span>
-                                                            </label>
-                                                        </div>
-                                                        <input type="submit" class="btn btn--primary btn--block" value="Register"
-                                                            name="Register" id="Register">
-                                                    </form>
-                                                    <!-- form  end -->
-                                                </div>
-
                                             </div>
                                         </div>
+                                        <!-- /.modal-content -->
                                     </div>
-                                    <!-- /.modal-content -->
+                                    <!-- /.modal-dialog -->
                                 </div>
-                                <!-- /.modal-dialog -->
+                                <!-- /.modal -->
                             </div>
-                            <!-- /.modal -->
+                        </div>
+                        <!-- Module Consultation  -->
+                        <div class="module module-property pull-left">
+                            <a href="add-property.php" target="_blank" class="btn"><i class="fa fa-plus"></i> Thêm phòng</a>
                         </div>
                     </div>
-                    <!-- Module Consultation  -->
-                    <div class="module module-property pull-left">
-                        <a href="add-property.php" target="_blank" class="btn"><i class="fa fa-plus"></i> Thêm phòng</a>
-                    </div>
+                    <!-- /.navbar-collapse -->
                 </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
+                <!-- /.container-fluid -->
+            </nav>
 
-    </header>
+        </header>

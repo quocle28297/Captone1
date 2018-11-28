@@ -437,5 +437,86 @@ function fill_District($conn)
 				echo 'cập nhật ảnh thành công';
 			}
 		}
+//get  f
+		function getname_f($conn)
+		{
+			if(isset($_GET['profile']))
+			{
+				$name_f_id = $_GET['profile'];
+				$query="SELECT *FROM users where USERS_ID=$name_f_id";
+				$result = mysqli_query($conn,$query);
+				$row = mysqli_fetch_array($result);
+				$output = $row["USERS_NAME"];				
+				return $output;
+			}
+		}
 
+		function getphone_f($conn)
+		{
+			if(isset($_GET['profile']))
+			{
+				$name_f_id = $_GET['profile'];
+				$query="SELECT *FROM users where USERS_ID=$name_f_id";
+				$result = mysqli_query($conn,$query);
+				$row = mysqli_fetch_array($result);
+				$output = $row["USERS_PHONE"];				
+				return $output;
+			}
+		}
+
+		function getgmail_f($conn)
+		{
+			if(isset($_GET['profile']))
+			{
+				$name_f_id = $_GET['profile'];
+				$query="SELECT *FROM users where USERS_ID=$name_f_id";
+				$result = mysqli_query($conn,$query);
+				$row = mysqli_fetch_array($result);
+				$output = $row["USERS_USERNAME"];				
+				return $output;
+			}
+		}
+
+		function getid_f($conn)
+		{
+			if(isset($_GET['profile']))
+			{
+				$name_f_id = $_GET['profile'];			
+				return $name_f_id;
+			}
+		}
+//get  f
+		// accept
+		if(isset($_POST["id-phong"])&& isset($_POST["date-s"]) && isset($_POST["date-e"]) && isset($_POST["gia"]))
+		{ 
+			$id_phong = mysqli_real_escape_string($conn, $_POST["id-phong"]);  
+			$date_s = mysqli_real_escape_string($conn, $_POST["date-s"]);  
+			$date_e = mysqli_real_escape_string($conn, $_POST["date-e"]);  
+			$gia = mysqli_real_escape_string($conn, $_POST["gia"]);  
+			$gia=get_number($gia);
+			echo $query="
+			UPDATE contract
+			SET 
+			`CONTRACT_STARTDATE` = '$date_s', `CONTRACT_ENDDATE` = '$date_e', `CONTRACT_PRICE`='$gia',`CONTRACT_STATUS`='2'
+			WHERE 
+			`CONTRACT_ROOM_ID`='$id_phong'
+			";
+			mysqli_query($conn, $query);
+		}
+		// accpt
+		//
+		function get_number($str){
+			$str_d= explode( '₫', $str );
+
+			$str_Tmp=$str_d[0];
+
+			$str_f=explode(',', $str_Tmp);
+			print_r($str_f);
+			$count= sizeof($str_f);
+			$dem=0;
+			$result=implode($str_f);
+			return  $result;
+
+		}
+		//
 		?> 

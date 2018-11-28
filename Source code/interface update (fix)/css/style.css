@@ -1690,7 +1690,7 @@ button.btn {
     	background-color: #f8f8f8;
     	border: 1px solid #eeeeee;
     	font-size: 14px;
-    	color: #aaaaaa;
+    	color: #0c0c0c;
     	line-height: 42px;
     	height: 42px;
     	margin-bottom: 0;
@@ -2806,7 +2806,7 @@ button.btn {
     	border-color: #eee;
     	padding: 0;
     }
-     table  tfoot tr th {
+    table  tfoot tr th {
         font-size: 14px;
         font-weight: 600;
         text-transform: capitalize;
@@ -9067,6 +9067,25 @@ button.btn {
     	padding: 10px 10px 10px 36px;
     	margin: 10px;
     }
+
+
+    .accept{
+        background: #e9ffd9 url('images/success.png') no-repeat 10px 50%;
+        border: 1px solid #a6ca8a;
+    }
+    .accept:hover {
+        /*background: #ffecec url('images/error.png') no-repeat 10px 50%;*/
+        border: 1px solid #090908;
+    }
+    .cancel {
+        background: #ffecec url('images/error.png') no-repeat 10px 50%;
+        border: 1px solid #f5aca6;
+    }
+    .cancel:hover {
+        /*background: #ffecec url('images/error.png') no-repeat 10px 50%;*/
+        border: 1px solid #090908;
+    }
+
     .alert-box span {
     	font-weight: bold;
     	text-transform: uppercase;
@@ -9074,6 +9093,10 @@ button.btn {
     .error {
     	background: #ffecec url('images/error.png') no-repeat 10px 50%;
     	border: 1px solid #f5aca6;
+    }
+    .error:hover {
+        /*background: #ffecec url('images/error.png') no-repeat 10px 50%;*/
+        border: 1px solid #090908;
     }
     .delete {
     	background: #ffecec url('images/error.png') no-repeat 10px 50%;
@@ -9083,96 +9106,112 @@ button.btn {
     	background: #e9ffd9 url('images/success.png') no-repeat 10px 50%;
     	border: 1px solid #a6ca8a;
     }
-    .warning {
-    	background: #fff8c4 url('images/warning.png') no-repeat 10px 50%;
-    	border: 1px solid #f2c779;
-    }
-    .information {
-    	background: #e3f7fc url('images/information.png') no-repeat 10px 50%;
-    	border: 1px solid #8ed9f6;
-    }
-    .edit {
-    	background: #e3f7fc url('images/edit.png') no-repeat 10px 50%;
-    	border: 1px solid #8ed9f6;
-    }
-    .title {
-    	font-family: Arial, sans-serif;
-    	text-align: center;
-    	font-size: 300%;
-    	background: #fff8c4 ;
-    	border: 1px solid #f2c779;
-    }
-    /*css ảnh*/
-    div.gallery {
-    	margin: 5px;
-    	border: 1px solid #ccc;
-    	float: left;
-    	width: 180px;
-    }
+    .success:hover
+    {
 
-    div.gallery:hover {
-    	border: 1px solid #777;
-    }
+     /*background:  #6fec1599 url('images/success.png') no-repeat 10px 50%;*/
+     border: 1px solid #090908;
+ }
+ .warning {
+   background: #fff8c4 url('images/warning.png') no-repeat 10px 50%;
+   border: 1px solid #f2c779;
+}
+.information {
+   background: #e3f7fc url('images/information.png') no-repeat 10px 50%;
+   border: 1px solid #8ed9f6;
+}
+.edit {
+   background: #e3f7fc url('images/edit.png') no-repeat 10px 50%;
+   border: 1px solid #8ed9f6;
+}
+.title {
+   font-family: Arial, sans-serif;
+   text-align: center;
+   font-size: 300%;
+   background: #fff8c4 ;
+   border: 1px solid #f2c779;
+}
+/*css ảnh*/
+div.gallery {
+   margin: 5px;
+   border: 1px solid #ccc;
+   float: left;
+   width: 180px;
+}
 
-    div.gallery img {
-    	width: 100%;
-    	height: auto;
-    }
+div.gallery:hover {
+   border: 1px solid #777;
+}
 
-    div.desc {
-    	padding: 15px;
-    	text-align: center;
-	}
+div.gallery img {
+   width: 100%;
+   height: auto;
+}
 
-	p.table_trunganh
-	{
-		padding: 10px 0px 0px;
-		color: #0c0c0c;
+div.desc {
+   padding: 15px;
+   text-align: center;
+}
 
-		font-size: 17px;
+p.table_trunganh
+{
+  /* css */
+  padding: 10px 0px 0px;
+  color: #0c0c0c;
 
-		font-weight: 400;
+  font-size: 17px;
 
-		line-height: 26px;
-	}
-	p.table_trunganh_id
-	{
-		text-decoration: underline;
-		text-align: center;
-		padding: 10px 0px 0px 0px;
-		color: #0c0c0c;
+  font-weight: 400;
 
-		font-size: 17px;
+  line-height: 26px;
+}
+p.table_trunganh_id
+{
+  text-decoration: underline;
+  text-align: center;
+  padding: 10px 0px 0px 0px;
+  color: #0c0c0c;
 
-		font-weight: 400;
+  font-size: 17px;
 
-		line-height: 26px;
-	}
-	p.table_trunganh_id:hover
-	{
-		
-		color: #4CAF50;
-	}
-	p.table_tunganhred
-	{
-		padding: 10px 0px 0px;
-		color: #f31212;
+  font-weight: 400;
 
-		font-size: 17px;
+  line-height: 26px;
+}
+p.table_trunganh_id:hover
+{
 
-		font-weight: 400;
+  color: #4CAF50;
+}
+p.table_tunganhred
+{
+  padding: 10px 0px 0px;
+  color: #f31212;
 
-		line-height: 26px;
-	}
-	input.trunganh
-	{
-		
-		
-		color: #0c0c0c;
+  font-size: 17px;
 
-		font-size: 17px;
+  font-weight: 400;
 
-		font-weight: 400;
+  line-height: 26px;
+}
+input.trunganh
+{
 
-		line-height: 26px;
-	}
+
+  color: #0c0c0c;
+
+  font-size: 17px;
+
+  font-weight: 400;
+
+  line-height: 26px;
+}
+
+.center {
+  /* canh giữa các thông tin */
+  margin: auto;
+  width: 140%;
+  border:30px;
+  padding-left: 30%;
+}
+

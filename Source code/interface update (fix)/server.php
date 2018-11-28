@@ -12,6 +12,7 @@ $statusMessage=array();
 
 // connect to the database
 $db = mysqli_connect('localhost', 'root', '', 'qlphongtro');
+mysqli_set_charset($db, 'UTF8');
 
 // REGISTER USER
 if (isset($_POST['Register'])) {
@@ -19,6 +20,7 @@ if (isset($_POST['Register'])) {
   // receive all input values from the form
   $USERS_NAME = mysqli_real_escape_string($db, $_POST['full-name']);
   $email = mysqli_real_escape_string($db, $_POST['register-email']);
+  $phone = mysqli_real_escape_string($db, $_POST['phone-h']);
   $password_1 = mysqli_real_escape_string($db, $_POST['register-password_1']);
   $password_2 = mysqli_real_escape_string($db, $_POST['register-password_2']);
 
@@ -45,17 +47,25 @@ if (isset($_POST['Register'])) {
 
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0 ) {
-  	$password = md5($password_1);//encrypt the password before saving in the database
+    $password = md5($password_1);//encrypt the password before saving in the database
 
-  	$query = "INSERT INTO users (USERS_NAME, USERS_USERNAME, USERS_PASSWORD) 
-   VALUES(N'$USERS_NAME', '$email', '$password')";
+    $query = "INSERT INTO users (USERS_NAME, USERS_USERNAME, USERS_PASSWORD,USERS_PHONE) 
+   VALUES(N'$USERS_NAME', '$email', '$password','$phone')";
    mysqli_query($db, $query);
-   $_SESSION['USERS_NAME'] = $USERS_NAME;
-   $_SESSION['success'] = "You are now logged in";
-
-  	//header('location: index.php');
+   thongbao('Bạn đăng  ký tài khoản thành công  vui lòng đăng nhập');
+    
+    //header('location: index.php');
  }
 }
+//hien  thong bao
+function thongbao($text)
+{
+  echo"<script>";       
+  echo  "alert('$text');";
+  echo "</script>";
+  
+}
+//
 
 //end Register
 if (isset($_POST['SignIn'])) {
@@ -79,6 +89,7 @@ if (isset($_POST['SignIn'])) {
       $_SESSION['ID'] = $row["USERS_ID"];
       $_SESSION['USERS_NAME'] = $row["USERS_NAME"];  
       $_SESSION['success'] = "You are now logged in";
+      thongbao('Bạn đăng nhập thành công');
     }else {
       array_push($errors, "Wrong username/password combination");
     }

@@ -542,7 +542,7 @@ function load_table_accept()
 	<table id="zone_data" class = "table table-bordered table-striped">  
 	<thead>  
 	<tr>
-	<th>ID Giao Dịch</th>
+	<th>ID Phòng</th>
 	<th>ID người thuê</th>
 	<th>Ngày bắt đầu</th>
 	<th>Ngày kết thúc</th>
@@ -575,6 +575,7 @@ function load_table_accept()
 		$Price = $row["CONTRACT_PRICE"];
 		$Price=$count_day*$Price;
 		$Price = number_format($Price).'₫';
+		$Price_1 = number_format($row["CONTRACT_PRICE"]).'₫';
 		
 		
 
@@ -588,16 +589,16 @@ function load_table_accept()
 		<td><p class="table_trunganh">'.$timesend.'</p></td>
 		<td><p class="table_trunganh">'.$Price.'</p></td>
 		
-		<td><form method="POST" 
-		action="#"> 
-		<input 
-		type="submit" 
+		<td><button type="button" 
+		class="alert-box success" 
 		id="'.$row["CONTRACT_ROOM_ID"].'" 
-		value="'.$row["CONTRACT_ROOM_ID"].'" 
-		name="no-accept"  
-		class="alert-box success">
-		</form>
-		</td>
+		value="'.$row["CONTRACT_ROOM_ID"].'"
+		date-s="'.$row["CONTRACT_STARTDATE"].'"
+		date-e="'.$row["CONTRACT_ENDDATE"].'"
+		gia="'.$Price_1.'">
+		Đồng ý		
+		</button></td>
+
 		
 		<td><form method="get" 
 		action="#"> 
@@ -620,7 +621,7 @@ function load_table_accept()
 	</tbody>
 	<tfoot>
 	<tr>
-	<th>ID Giao Dịch</th>
+	<th>ID Phòng</th>
 	<th>ID người thuê</th>
 	<th>Ngày bắt đầu</th>
 	<th>Ngày kết thúc</th>
