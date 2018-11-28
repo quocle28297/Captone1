@@ -1,4 +1,4 @@
-<!-- <!-- <?php
+<?php
 if (isset($_GET['logout'])) {
 
   session_destroy();
@@ -152,7 +152,7 @@ if (!isset($_SESSION['ID'])){
      },  
      success:function(data)
      {  
-      //location.reload();
+      location.reload();
     }  
   });  
    }  
