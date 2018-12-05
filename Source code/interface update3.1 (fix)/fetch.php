@@ -113,7 +113,7 @@ function load_table_room()
 		<table class = "table table-bordered table-striped">
 		<tr>
 		<th>Chi tiết</th>
-		<th>Sr. No</th>
+		<th>Stt</th>
 		<th>ID</th>
 		<th>Tên phòng</th>
 		<th>Giá</th>
@@ -344,7 +344,7 @@ function load_table_room2()
 		<thead>  
 		<tr>
 		<th>Chi tiết</th>
-		<th>Sr. No</th>
+		<th>Stt</th>
 		<th>ID</th>
 		<th>Tên phòng</th>
 		<th>Giá</th>
@@ -370,13 +370,14 @@ function load_table_room2()
 			$output .='
 
 			<tr>
-			<td><form method="POST"
+			<td><form method="post"
 			action="accept.php">
 			<input 
-			type="submit" 
+			type="hidden"
 			id="'.$row["ROOM_ID"].'"
 			value="'.$row["ROOM_ID"].'" 
-			name="detail-room" 
+			name="detail-room">
+			<input type="submit" value="Chi Tiết"
 			class="alert-box '.$color_chitiet.'">
 			</form></td>
 
@@ -390,10 +391,12 @@ function load_table_room2()
 			<td><form method="post"
 			action="edit-room.php">
 			<input 
-			type="submit" 
+			type="hidden" 
 			id="'.$row["ROOM_ID"].'" 
 			value="'.$row["ROOM_ID"].'" 
 			name="Edit-room"  
+			class="alert-box edit">
+			<input type="submit" value="Cập nhật"
 			class="alert-box edit">
 			</form></td>
 
@@ -402,7 +405,7 @@ function load_table_room2()
 			id_edit_room="'.$row["ROOM_ID"].'" 
 			edit_name="'.$row["ROOM_NAME"].'"
 			value="delete"
-			>
+			>xóa
 
 			</button></td>
 			<td>'.$status.' '.$a.'<p></td>
@@ -416,7 +419,7 @@ function load_table_room2()
 		<tfoot>
 		<tr>
 		<th>Chi tiết</th>
-		<th>Sr. No</th>
+		<th>Stt</th>
 		<th>ID</th>
 		<th>Tên phòng</th>
 		<th>Giá</th>
@@ -462,7 +465,7 @@ function load_table_zone2()
 	<thead>  
 	<tr>
 	<th>Chi tiết</th>
-	<th>Sr. No</th>
+	<th>Stt</th>
 	<th>ID</th>
 	<th>Tên zone</th>
 	<th>Địa chỉ</th>
@@ -485,11 +488,16 @@ function load_table_zone2()
 		<td><form method="POST"
 		action="management-room.php">
 		<input 
-		type="submit" 
+		type="hidden" 
 		id="'.$row["ZONE_ID"].'"
 		value="'.$row["ZONE_ID"].'" 
 		name="detail-zone" 
-		class="alert-box information">
+		>
+		<input
+		type ="submit"
+		value="Chi Tiết"
+		class="alert-box information"
+		 >
 		</form></td>
 
 		<td><p class="table_trunganh">'.$count.'</p></td>
@@ -500,11 +508,16 @@ function load_table_zone2()
 		<td><form method="POST" 
 		action="Edit-zone.php"> 
 		<input 
-		type="submit" 
+		type="hidden" 
 		id="'.$row["ZONE_ID"].'" 
 		value="'.$row["ZONE_ID"].'" 
 		name="Edit-zone"  
-		class="alert-box edit">
+		>
+		<input
+		type ="submit"
+		value="Cập Nhật"
+		class="alert-box edit"
+		 >
 		</form></td>
 
 		<td><button type="button" 
@@ -522,7 +535,7 @@ function load_table_zone2()
 	<tfoot>
 	<tr>
 	<th>Chi tiết</th>
-	<th>Sr. No</th>
+	<th>Stt</th>
 	<th>ID</th>
 	<th>Tên zone</th>
 	<th>Địa chỉ</th>
@@ -1000,13 +1013,20 @@ function laod_btn()
 	$result = mysqli_query($connect, $query);
 	if(mysqli_num_rows($result) > 0)
 	{
-		$output.='
-		<button type="button" 
-		class="alert-box warning" 
-		id="set_room">
-		Có Đề Nghị đặt phòng
-		</button>
-		';
+		while($row = mysqli_fetch_array($result))
+		{
+			if(get_contract_statucs($connect,$row["ROOM_ID"])==1)
+			{
+				$output.='
+				<button type="button" 
+				class="alert-box warning" 
+				id="set_room">
+				Có Đề Nghị đặt phòng
+				</button>
+				';
+				break;
+			}
+		}
 	}
 	echo $output;
 }

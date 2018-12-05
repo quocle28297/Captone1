@@ -136,6 +136,14 @@ if (isset($_POST['save'])) {
   if ((!is_numeric($ROOM_PRICE)) && (!empty($ROOM_PRICE))) {
     array_push($errors, "Giá chỉ được nhập số ");
   }
+  if($ROOM_PRICE < 0)
+  { 
+    array_push($errors, "Giá không được âm ");
+  }
+  if($ROOM_ACREAGE < 0)
+  { 
+    array_push($errors, "Diện tích không được âm ");
+  }
   if (empty($ROOM_DISCRIBE)) {
     array_push($errors, "Bạn Chưa nhập mô tả");
   }
@@ -244,9 +252,9 @@ if (isset($_POST['save'])) {
  {
    $query = "DELETE FROM `room` WHERE ROOM_ID='$ROOM_ID'";
    if (mysqli_query($db, $query)) {
-    array_push($errors, "ok");
+    //array_push($errors, "ok");
   } else {
-    array_push($errors, "no". mysqli_error($db));
+    //array_push($errors, "no". mysqli_error($db));
   }
 }
 
@@ -572,6 +580,14 @@ if(isset($_POST['save-edit-room']))
   }
   if (empty($ROOM_ACREAGE)) {
     array_push($errors, "diện tích chỉ được nhập số");
+  }
+  if($ROOM_PRICE < 0)
+  { 
+    array_push($errors, "Giá  không hợp  lý ");
+  }
+  if($ROOM_ACREAGE < 0)
+  { 
+    array_push($errors, "Diện tích không hợp lý");
   }
 
   if (empty($ROOM_NAME)) {
