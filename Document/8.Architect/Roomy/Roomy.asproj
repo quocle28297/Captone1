@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:model="http://architecturestudio_project_model/1.0">
+  <model:ArchitectureStudioProject name="Roomy" viewLocation="views" typeRepositoryLocation="images">
+    <architecturalDriversSpec>
+      <useCaseEntityContainer/>
+      <useCaseContainer/>
+      <qualityAttributeContainer/>
+      <businessConstraintContainer/>
+      <technicalConstraintContainer/>
+    </architecturalDriversSpec>
+    <folderContainer>
+      <folders/>
+      <folders perspective="Dynamic"/>
+      <folders perspective="Physical"/>
+    </folderContainer>
+    <mappingContainer/>
+    <assignmentContainer/>
+  </model:ArchitectureStudioProject>
+  <model:TypeRepository name="CUSTOM">
+    <typeCategories name="DEFAULT_CATEGORY"/>
+    <typeCategories name="DEFAULT_CATEGORY" perspective="Dynamic"/>
+    <typeCategories name="DEFAULT_CATEGORY" perspective="Physical"/>
+  </model:TypeRepository>
+</xmi:XMI>
