@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 05, 2018 lúc 07:31 PM
+-- Thời gian đã tạo: Th12 06, 2018 lúc 04:24 AM
 -- Phiên bản máy phục vụ: 10.1.36-MariaDB
 -- Phiên bản PHP: 7.2.11
 
@@ -980,7 +980,8 @@ CREATE TABLE `report` (
   `REPORT_ID` int(11) NOT NULL,
   `REPORT_USER_ID` int(11) NOT NULL,
   `REPORT_ROOM_ID` bigint(20) NOT NULL,
-  `REPORT_CONTENT` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
+  `REPORT_CONTENT` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `REPORT_DATE` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
